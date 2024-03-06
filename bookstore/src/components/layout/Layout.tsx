@@ -10,7 +10,7 @@ export function Layout ({children}:LayoutProps) {
   return (
     <>
     <Navbar/>
-    <main>{children}</main>
+    <main className="d-flex flex-column justify-content-evenly align-items-center w-75 mx-auto ">{children}</main>
     <Footer/>
     </>
   )
