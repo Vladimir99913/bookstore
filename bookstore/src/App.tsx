@@ -1,10 +1,14 @@
+import { Title } from "./components/Title";
+import { Layout } from "./components/layout/Layout";
+import { Navbar } from "./components/layout/Navbar";
+
 export function App() {
 
   return (
     <>
-    <div className="container py-4 px-3 mx-auto">
-      <h1>Start diplom bookstore!</h1>
-    </div>
+    <Layout>
+      <Title title="New Book"/>
+    </Layout>
     </>
   )
 }
