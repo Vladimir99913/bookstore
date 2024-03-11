@@ -13,7 +13,7 @@ export function Tabs() {
   }
 
   return (
-    <div className="nav nav-tabs w-75 mb-4">
+    <div className="nav nav-tabs w-100 my-5">
       <button data-id="tab1" className={`nav-link w-25 ${activeTab === 'tab1' ? 'active' : ''}`} onClick={handleToggleTab}>description</button>
       <button data-id="tab2" className={`nav-link w-25 ${activeTab === 'tab2' ? 'active' : ''}`} onClick={handleToggleTab}>authors</button>
       <button data-id="tab3" className={`nav-link w-25 ${activeTab === 'tab3' ? 'active' : ''}`} onClick={handleToggleTab}>reviews</button>

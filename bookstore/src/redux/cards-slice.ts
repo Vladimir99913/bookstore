@@ -20,10 +20,10 @@ export const fetchCards = createAsyncThunk(
   }
 )
 
-
 interface CardsState {
   newCards: ICardNew[],
   card: ICard[],
+  cardFavorites: ICard[],
   isLoading: boolean,
   error: null | string | undefined,
 }
@@ -31,7 +31,8 @@ interface CardsState {
 
 const initialState: CardsState = {
   newCards: [],
-  card: [],
+  card: {},
+  cardFavorites: [],
   isLoading: false,
   error: null,
 }
@@ -40,7 +41,13 @@ export const cardsSlice = createSlice({
   name: 'cards',
   initialState,
   reducers: {
-
+    setFavorites: (state, action) => {
+      state.newCards.map(item => {
+       if(item.isbn13 == action.payload){
+          state.cardFavorites.push(item)
+       }
+     })
+   },
 },
   extraReducers: (builder) => {
     builder
@@ -50,25 +57,26 @@ export const cardsSlice = createSlice({
       .addCase(fetchNewCards.fulfilled, (state, action: PayloadAction<ICardNew[]>) => {
         state.newCards = action.payload
       })
-
       .addCase(fetchNewCards.rejected, (state, action) => {
         state.error = action.error.message
         state.isLoading = false
       })
+
       .addCase(fetchCards.pending, (state) => {
         state.isLoading = true
       })
-      .addCase(fetchCards.fulfilled, (state, action: PayloadAction<ICard[]>) => {
+      .addCase(fetchCards.fulfilled, (state, action: PayloadAction<ICard>) => {
         state.card = action.payload
+        console.log(state.card)
       })
-
       .addCase(fetchCards.rejected, (state, action) => {
         state.error = action.error.message
         state.isLoading = false
       })
+
   }
 })
 
-// export const { } = cardsSlice.actions
+export const { setFavorites } = cardsSlice.actions
 export const cardsReducer = cardsSlice.reducer
 
