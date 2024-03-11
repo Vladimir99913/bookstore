@@ -1,6 +1,6 @@
 export function Navbar() {
   return (
-    <nav className="navbar bg-body-tertiary">
+    <nav className="navbar bg-body-tertiary" style={{marginBottom: '70px'}}>
       <div className="container-fluid">
         <a className="navbar-brand">Vladzimir bookstore</a>
         <form className="d-flex w-50" role="search">
