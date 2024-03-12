@@ -22,8 +22,9 @@ export const fetchCards = createAsyncThunk(
 
 export const fetchSearchCards = createAsyncThunk(
   'posts/fetchSearchCards',
-  async ({search}) => {
-    const data = await requestSearchCards({search})
+  async (opts = {}) => {
+    const {search, pageNumber = 1} = opts
+    const data = await requestSearchCards({search, pageNumber})
     console.log(data)
     return data
   }
@@ -36,6 +37,8 @@ interface CardsState {
   cardSearch: ICard[],
   isLoading: boolean,
   error: null | string | undefined,
+  pagesCounter: number,
+  limit: number,
 }
 
 
@@ -46,6 +49,9 @@ const initialState: CardsState = {
   cardSearch: [],
   isLoading: false,
   error: null,
+  pagesCounter:0,
+  limit: 10,
+
 }
 // satisfies CardsState as CardsState
 export const cardsSlice = createSlice({
@@ -88,9 +94,13 @@ export const cardsSlice = createSlice({
       .addCase(fetchSearchCards.pending, (state) => {
         state.isLoading = true
       })
-      .addCase(fetchSearchCards.fulfilled, (state, action: PayloadAction<ICard[]>) => {
-        state.cardSearch = action.payload
-        console.log(state.card)
+      .addCase(fetchSearchCards.fulfilled, (state, action) => {
+        state.cardSearch = action.payload.books
+        console.log(action.payload.books)
+        // if(state.pagesCounter) return
+
+        state.pagesCounter = Math.ceil(action.payload.total / state.limit)
+        console.log(state.pagesCounter)
       })
       .addCase(fetchSearchCards.rejected, (state, action) => {
         state.error = action.error.message

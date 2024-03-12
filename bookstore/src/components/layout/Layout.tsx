@@ -11,10 +11,10 @@ export function Layout () {
   return (
     <>
     <Navbar/>
-    <main className="d-flex flex-column justify-content-evenly align-items-center w-75 mx-auto ">
+    <main className="d-flex flex-column justify-content-evenly align-items-center w-75 mx-auto">
       <Outlet/>
     </main>
-    <Footer/>
+    {/* <Footer/> */}
     </>
   )
 }

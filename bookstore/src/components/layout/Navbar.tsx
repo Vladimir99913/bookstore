@@ -11,7 +11,7 @@ export function Navbar() {
 
   function handleSubmit(event: React.MouseEvent<HTMLFormElement>) {
     event.preventDefault();
-    navigate(`/posts/search/${search}`)
+    navigate(`/posts/search/${search}/1`)
   }
 
   return (

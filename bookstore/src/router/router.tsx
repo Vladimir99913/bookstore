@@ -29,7 +29,7 @@ export const router = createBrowserRouter([
       //   element: <FormSignUp />
       // },
       {
-        path: '/posts/search/:query',
+        path: '/posts/search/:query/:pageNumber',
         element: <CardSearchList />
       },
     ]
