@@ -24,4 +24,10 @@ async function requestCards (isbn13:ICardsProps) {
   return data
 }
 
-export {requestNewCards, requestCards}
+async function requestSearchCards ({search}) {
+  const {data} = await client.get(`/search/${search}`)
+  console.log(data)
+  return data.books
+}
+
+export {requestNewCards, requestCards, requestSearchCards}

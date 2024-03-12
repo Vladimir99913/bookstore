@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
-import { requestNewCards, requestCards, ICardsProps } from '../services/card'
+import { requestNewCards, requestCards, ICardsProps, requestSearchCards } from '../services/card'
 import { ICardNew, ICard } from '../types/types'
 
 export const fetchNewCards = createAsyncThunk(
@@ -20,10 +20,20 @@ export const fetchCards = createAsyncThunk(
   }
 )
 
+export const fetchSearchCards = createAsyncThunk(
+  'posts/fetchSearchCards',
+  async ({search}) => {
+    const data = await requestSearchCards({search})
+    console.log(data)
+    return data
+  }
+)
+
 interface CardsState {
   newCards: ICardNew[],
   card: ICard[],
   cardFavorites: ICard[],
+  cardSearch: ICard[],
   isLoading: boolean,
   error: null | string | undefined,
 }
@@ -33,6 +43,7 @@ const initialState: CardsState = {
   newCards: [],
   card: {},
   cardFavorites: [],
+  cardSearch: [],
   isLoading: false,
   error: null,
 }
@@ -74,6 +85,17 @@ export const cardsSlice = createSlice({
         state.isLoading = false
       })
 
+      .addCase(fetchSearchCards.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(fetchSearchCards.fulfilled, (state, action: PayloadAction<ICard[]>) => {
+        state.cardSearch = action.payload
+        console.log(state.card)
+      })
+      .addCase(fetchSearchCards.rejected, (state, action) => {
+        state.error = action.error.message
+        state.isLoading = false
+      })
   }
 })
 

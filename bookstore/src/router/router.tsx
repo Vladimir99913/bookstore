@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import { Layout } from '../components/layout/Layout';
 import { Main } from '../pages/Main';
 import { CardPost } from '../pages/CardPost';
+import { CardSearchList } from '../pages/CardSearchList';
 
 export const router = createBrowserRouter([
   {
@@ -27,10 +28,10 @@ export const router = createBrowserRouter([
       //   path: '/sign-up',
       //   element: <FormSignUp />
       // },
-      // {
-      //   path: '/posts/search/:query',
-      //   element: <CardSearchList />
-      // },
+      {
+        path: '/posts/search/:query',
+        element: <CardSearchList />
+      },
     ]
   }
 ])
