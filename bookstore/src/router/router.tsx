@@ -3,6 +3,8 @@ import { Layout } from '../components/layout/Layout';
 import { Main } from '../pages/Main';
 import { CardPost } from '../pages/CardPost';
 import { CardSearchList } from '../pages/CardSearchList';
+import { CardFavoritesList } from '../pages/CardFavoritesList';
+import { CardCartList } from '../pages/CardCartList';
 
 export const router = createBrowserRouter([
   {
@@ -31,6 +33,14 @@ export const router = createBrowserRouter([
       {
         path: '/posts/search/:query/:pageNumber',
         element: <CardSearchList />
+      },
+      {
+        path: '/favorites',
+        element: <CardFavoritesList />
+      },
+      {
+        path: '/cart',
+        element: <CardCartList />
       },
     ]
   }

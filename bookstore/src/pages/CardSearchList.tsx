@@ -9,10 +9,8 @@ export function CardSearchList() {
   const dispatch = useAppDispatch()
   const { query } = useParams()
   const { pageNumber: pageNumberCurrent } = useParams()
-  console.log({ pageNumber: pageNumberCurrent })
   const pagesCounter = useAppSelector(state => state.cards.pagesCounter)
   const data = useAppSelector(state => state.cards.cardSearch)
-  console.log(data)
 
   useEffect(() => {
     dispatch(fetchSearchCards({ search: query, pageNumber: pageNumberCurrent }))
@@ -21,7 +19,7 @@ export function CardSearchList() {
 
   return (
     <>
-    <div className="row row-cols-1 row-cols-md-3 w-75">
+    <div className="row row-cols-1 row-cols-md-3 g-4">
           {data.map((post, index) => <Card key={index} {...post} />)}
         </div>
         <nav>

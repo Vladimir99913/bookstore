@@ -29,4 +29,5 @@ export interface ICard {
   image: string,
   url: string,
   pdf: IPdf,
+  count?: any,
 }

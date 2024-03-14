@@ -1,24 +1,13 @@
-import { useAppDispatch, useAppSelector } from "../../hooks/hooks"
-import {useState} from 'react'
+import { useAppDispatch } from "../../hooks/hooks"
 import { ICard } from "../../types/types"
-import { Counter } from "../Counter"
-import { setInkrement, setDecrement } from "../../redux/cards-slice"
+import { setDeleteFavorites } from "../../redux/cards-slice"
 
-export function CardCart(props: ICard) {
+export function CardFavorite(props: ICard) {
 const dispatch = useAppDispatch()
-const [counter, setCount] = useState(props.count)
 
-  function handleClickIncrement() {
-    setCount(counter + 1)
-    dispatch(setInkrement(props.isbn13))
-  }
-
-  function handleClickDecrement() {
-    if (counter == 1) return
-    dispatch(setDecrement(props.isbn13))
-    setCount(counter - 1)
-  }
-
+function handleClickDelteFavorite () {
+ dispatch(setDeleteFavorites(props.isbn13))
+}
 
   return (
     <div className="card mb-5 w-100 border border-0 border-bottom">
@@ -30,12 +19,13 @@ const [counter, setCount] = useState(props.count)
           <div className="card-body d-flex flex-column justify-content-evenly">
             <h1 className="text-secondary">{props.title}</h1>
             <h3 className="card-title">{props.authors}</h3>
-            <div className="d-flex justify-content-evenly w-25">
-            <Counter count={counter} handleClickIncrement={handleClickIncrement} handleClickDecrement={handleClickDecrement} />
+            <div className="d-flex justify-content-between w-50">
+            <h2 className="text-secondary">{props.price}</h2>
+            <h2 className="card-title">{props.rating}</h2>
           </div>
           </div>
           <div className="my-auto">
-          <h2 className="text-secondary">{props.price}</h2>
+          <button className="btn btn-dark btn-lg" onClick={handleClickDelteFavorite}><i className="bi bi-heart-fill"/></button>
           </div>
         </div>
       </div>
