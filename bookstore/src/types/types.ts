@@ -28,6 +28,6 @@ export interface ICard {
   price: string,
   image: string,
   url: string,
-  pdf: IPdf,
+  pdf?: IPdf,
   count?: any,
 }

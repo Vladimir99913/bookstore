@@ -43,7 +43,7 @@ interface CardsState {
 
 const initialState: CardsState = {
   newCards: [],
-  card: {},
+  card: [],
   cardFavorites: getBookFavorite(),
   cardSearch: [],
   cardCart: getBookCart(),
