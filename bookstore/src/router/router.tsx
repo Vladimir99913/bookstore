@@ -12,11 +12,11 @@ export const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Main />
+        element: <Main />,
       },
       {
         path: '/posts/:isbn13',
-        element: <Book />
+        element: <Book />,
       },
       // {
       //   path: '/posts/page/:pageNumber',
@@ -32,16 +32,16 @@ export const router = createBrowserRouter([
       // },
       {
         path: '/posts/search/:query/:pageNumberCurrent',
-        element: <BookSearchList />
+        element: <BookSearchList />,
       },
       {
         path: '/favorites',
-        element: <BookFavoriteList />
+        element: <BookFavoriteList />,
       },
       {
         path: '/cart',
-        element: <BookCartList />
+        element: <BookCartList />,
       },
-    ]
-  }
-])
+    ],
+  },
+]);

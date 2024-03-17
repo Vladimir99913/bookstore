@@ -1,19 +1,19 @@
 export function getBookFavorite() {
-  const localBookFavorite = localStorage.getItem('bookFavorites')
+  const localBookFavorite = localStorage.getItem('bookFavorites');
 
-  if(!localBookFavorite) return []
+  if (!localBookFavorite) return [];
 
-  const bookFavorite = JSON.parse(localBookFavorite)
+  const bookFavorite = JSON.parse(localBookFavorite);
 
-  return bookFavorite
+  return bookFavorite;
 }
 
 export function getBookCart() {
-  const localBookCart = localStorage.getItem('bookCart')
+  const localBookCart = localStorage.getItem('bookCart');
 
-  if(!localBookCart) return []
+  if (!localBookCart) return [];
 
-  const bookCart = JSON.parse(localBookCart)
+  const bookCart = JSON.parse(localBookCart);
 
-  return bookCart
+  return bookCart;
 }

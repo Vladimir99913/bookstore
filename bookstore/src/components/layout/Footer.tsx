@@ -4,5 +4,5 @@ export function Footer() {
       <p>©2024 Bookstore</p>
       <p>All rights reserved</p>
     </nav>
-  )
+  );
 }
