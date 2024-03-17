@@ -1,10 +1,10 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { Layout } from '../components/layout/Layout';
 import { Main } from '../pages/Main';
-import { CardPost } from '../pages/CardPost';
-import { CardSearchList } from '../pages/CardSearchList';
-import { CardFavoritesList } from '../pages/CardFavoritesList';
-import { CardCartList } from '../pages/CardCartList';
+import { Book } from '../pages/Book';
+import { BookSearchList } from '../pages/BookSearchList';
+import { BookFavoriteList } from '../pages/BookFavoriteList';
+import { BookCartList } from '../pages/BookCartList';
 
 export const router = createBrowserRouter([
   {
@@ -16,7 +16,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '/posts/:isbn13',
-        element: <CardPost />
+        element: <Book />
       },
       // {
       //   path: '/posts/page/:pageNumber',
@@ -31,16 +31,16 @@ export const router = createBrowserRouter([
       //   element: <FormSignUp />
       // },
       {
-        path: '/posts/search/:query/:pageNumber',
-        element: <CardSearchList />
+        path: '/posts/search/:query/:pageNumberCurrent',
+        element: <BookSearchList />
       },
       {
         path: '/favorites',
-        element: <CardFavoritesList />
+        element: <BookFavoriteList />
       },
       {
         path: '/cart',
-        element: <CardCartList />
+        element: <BookCartList />
       },
     ]
   }

@@ -1,4 +1,4 @@
-import { Card } from "./card/Card";
+import { BookCard } from "./card/BookCard"
 
 export function SimilarBooks() {
   return (

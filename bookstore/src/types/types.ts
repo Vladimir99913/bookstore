@@ -1,4 +1,4 @@
-export interface ICardNew {
+export interface BookNew {
   title: string,
   subtitle: string,
   isbn13: string,
@@ -7,12 +7,12 @@ export interface ICardNew {
   url: string,
 }
 
-export interface IPdf {
+export interface Pdf {
   "Chapter 2": string,
   "Chapter 5": string
 }
 
-export interface ICard {
+export interface Book {
   error: string,
   title: string,
   subtitle: string,
@@ -28,6 +28,6 @@ export interface ICard {
   price: string,
   image: string,
   url: string,
-  pdf?: IPdf,
+  pdf?: Pdf,
   count?: any,
 }

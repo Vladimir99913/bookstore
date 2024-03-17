@@ -1,5 +1,5 @@
 // Card
-const cardsNewEndpoint = `/new`
-const cardsEndpoint = `/books/`
+const booksNewEndpoint = `/new`
+const booksEndpoint = `/books/`
 
-export {cardsNewEndpoint, cardsEndpoint}
+export {booksNewEndpoint, booksEndpoint}

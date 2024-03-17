@@ -7,7 +7,7 @@ export function Tabs() {
   const activeTab = useAppSelector(state => state.tabs.value)
 
   function handleToggleTab(event: React.MouseEvent<HTMLButtonElement>) {
-    const { id } = event.target.dataset
+    const { id } = (event.target as HTMLButtonElement).dataset
     console.log(event.target)
     dispatch(setTabs(id))
   }

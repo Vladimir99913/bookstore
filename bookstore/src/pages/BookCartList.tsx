@@ -1,8 +1,8 @@
-import { useAppSelector, useAppDispatch } from "../hooks/hooks"
-import { CardCart } from "../components/card/CardCart"
+import { useAppSelector } from '../hooks/hooks'
+import { BookCardCart } from '../components/card/BookCardCart'
 
-export function CardCartList() {
-const booksCart = useAppSelector(state=>state.cards.cardCart)
+export function BookCartList() {
+const booksCart = useAppSelector(state=>state.books.bookCart)
 
 function sumBooks() {
   let sum:number = 0
@@ -27,7 +27,7 @@ function sumBooksTotal() {
 }
   return (
     <>
-        {booksCart.map((post, index) => <CardCart key={index} {...post} />)}
+        {booksCart.map((post, index) => <BookCardCart key={index} {...post} />)}
         <div>
         <div className="d-flex justify-content-between w-25">
         <div>

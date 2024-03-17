@@ -2,20 +2,38 @@ import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useAppSelector, useAppDispatch } from '../hooks/hooks'
 import { Title } from '../components/Title'
-import { fetchCards } from '../redux/cards-slice'
-import { CardMain } from '../components/card/CardMain'
+import { fetchCards } from '../redux/books-slice'
+import { BookCard } from '../components/card/BookCard'
+import { BookCardMain } from '../components/card/BookCardMain'
 import { Tabs } from '../components/Tabs'
 import { Subscribe } from '../components/Subscribe'
+import { fetchNewCards } from '../redux/books-slice'
+import { BookSearchProps, BookProps} from '../services/book'
+// import { Book, BookNew } from '../types/types'
 
-export function CardPost() {
+
+export function Book () {
   const activeTab = useAppSelector(state => state.tabs.value)
+  const cards = useAppSelector(state => state.books.newBooks)
 
-  const { isbn13 } = useParams()
+  useEffect(()=>{
+    dispatch(fetchNewCards())
+  }, [])
+  // interface Params {
+  //   isbn13: string | undefined;
+  // }
+  // const params = useParams<{isbn13:string}>()
+  // console.log(params)
+  const { isbn13 } = useParams<{isbn13:string}>()
+  console.log(typeof(isbn13))
   const dispatch = useAppDispatch()
-  const postById = useAppSelector(state => state.cards.card)
+  const postById = useAppSelector(state => state.books.book)
+
 
   useEffect(() => {
-    dispatch(fetchCards(isbn13))
+    if(isbn13){
+      dispatch(fetchCards(isbn13))
+    }
   }, [isbn13])
 
   function renderContent() {
@@ -52,10 +70,22 @@ export function CardPost() {
 
   return (
     <>    <Title title={postById.title} />
-        <CardMain {...postById} />
+        <BookCard {...postById} />
         <Tabs />
     {renderContent()}
     <Subscribe />
+        {/* <div className="w-100">
+          <div className="d-flex justify-content-between">
+            <Title title="Similar books"/>
+            <div className="d-flex my-auto ">
+              <button className="btn btn-primary me-2">Prev</button>
+              <button className="btn btn-primary">Next</button>
+            </div>
+          </div>
+              <div className="row row-cols-1 row-cols-md-3 g-4 flex-nowrap" style={{position: 'relative', overflow: 'hidden'}}>
+                 {cards.map((card, index) => <Card key={index} {...card} />)}
+              </div>
+        </div> */}
     </>
   )
 

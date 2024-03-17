@@ -6,8 +6,8 @@ export function Navbar() {
   const navigate = useNavigate()
   const [search, setSearch] = useState('')
 
-  const booksCart = useAppSelector(state => state.cards.cardCart)
-  const booksFavorites = useAppSelector(state => state.cards.cardFavorites)
+  const booksCart = useAppSelector(state => state.books.bookCart)
+  const booksFavorites = useAppSelector(state => state.books.bookFavorites)
 
   function countBooksCart () {
     let countSum: number = 0
@@ -36,7 +36,7 @@ export function Navbar() {
         </form>
         <div>
         <NavLink to="/favorites"><button className="btn btn-outline-success" ><i className="bi bi-heart me-2"></i>{booksFavorites.length}</button></NavLink>
-        <NavLink to="/cart"><button className="btn btn-outline-success mx-3" ><i className="bi bi-bag  me-2"></i>{countBooksCart()}</button></NavLink>
+        <NavLink to="/cart"><button className="btn btn-outline-success mx-3" ><i className="bi bi-bag  me-2"></i>{}</button></NavLink>
         <button className="btn btn-outline-success" ><i className="bi bi-person"></i></button>
         </div>
       </div>

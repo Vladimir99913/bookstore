@@ -1,10 +1,10 @@
-import { useAppDispatch, useAppSelector } from "../../hooks/hooks"
-import {useState} from 'react'
-import { ICard } from "../../types/types"
-import { Counter } from "../Counter"
-import { setInkrement, setDecrement } from "../../redux/cards-slice"
+import { useAppDispatch } from '../../hooks/hooks'
+import { useState } from 'react'
+import { Book } from '../../types/types'
+import { Counter } from '../Counter'
+import { setInkrement, setDecrement } from '../../redux/books-slice'
 
-export function CardCart(props: ICard) {
+export function BookCardCart(props: Book) {
 const dispatch = useAppDispatch()
 const [counter, setCount] = useState(props.count)
 

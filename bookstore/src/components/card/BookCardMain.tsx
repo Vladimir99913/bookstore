@@ -1,10 +1,10 @@
 // import Astr from '../../assets/Astronauts3.svg'
-import { ICardNew } from '../../types/types'
+import { BookNew } from '../../types/types'
 import { NavLink } from 'react-router-dom'
 // interface CardProps {
 //   books: ICardNew[]
 // }
-export function Card(props:ICardNew) {
+export function BookCardMain(props:BookNew) {
   return (
     <div className="col" style={{marginBottom: '60px'}}>
     <div className="card" style={{ minHeight: '500px'}} >

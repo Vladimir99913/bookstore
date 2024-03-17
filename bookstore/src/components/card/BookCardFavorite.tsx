@@ -1,8 +1,8 @@
-import { useAppDispatch } from "../../hooks/hooks"
-import { ICard } from "../../types/types"
-import { setDeleteFavorites } from "../../redux/cards-slice"
+import { useAppDispatch } from '../../hooks/hooks'
+import { Book } from '../../types/types'
+import { setDeleteFavorites } from '../../redux/books-slice'
 
-export function CardFavorite(props: ICard) {
+export function BookCardFavorite(props: Book) {
 const dispatch = useAppDispatch()
 
 function handleClickDelteFavorite () {
