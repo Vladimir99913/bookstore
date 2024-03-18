@@ -1,7 +1,9 @@
-import { useAppSelector } from '../hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../hooks/hooks';
 import { BookCardCart } from '../components/card/BookCardCart';
+import { setDeleteAllBookCart } from '../redux/books-slice';
 
 export function BookCartList() {
+  const dispatch = useAppDispatch();
   const isLoading = useAppSelector(state => state.books.isLoading);
   const error = useAppSelector(state => state.books.error);
   const booksCart = useAppSelector(state => state.books.bookCart);
@@ -27,6 +29,10 @@ export function BookCartList() {
     return sumTotal.toFixed(2);
   }
 
+  function handleClickDelteAll() {
+    dispatch(setDeleteAllBookCart());
+  }
+
   function renderContent() {
     if (error) {
       return <h1 className="text-danger">Error: {error}</h1>;
@@ -42,20 +48,34 @@ export function BookCartList() {
         {booksCart.map((post, index) => (
           <BookCardCart key={index} {...post} />
         ))}
+        <div className="w-25 align-self-start">
+          <button className="btn btn-danger btn-lg w-100" onClick={handleClickDelteAll}>
+            Delete all
+          </button>
+        </div>
         <div className="w-25 align-self-end">
           <div className="d-flex justify-content-between">
             <div>
-              <p>Sum total:</p>
-              <p>VAT:</p>
+              <p className="fs-5 fw-normal">Sum total:</p>
+              <p className="fs-5 fw-normal">VAT:</p>
               <h1>Total:</h1>
             </div>
             <div>
-              <p className="text-end">{sumBooks()}</p>
-              <p className="text-end">{sumBooksVat()}</p>
-              <h1 className="text-end">{sumBooksTotal()}</h1>
+              <p className="text-end fs-5 fw-normal">
+                <span>&#36;</span>
+                {sumBooks()}
+              </p>
+              <p className="text-end fs-5 fw-normal">
+                <span>&#36;</span>
+                {sumBooksVat()}
+              </p>
+              <h1 className="text-end ">
+                <span>&#36;</span>
+                {sumBooksTotal()}
+              </h1>
             </div>
           </div>
-          <button className="btn btn-primary w-100">Check out</button>
+          <button className="btn btn-dark btn-lg w-100">Check out</button>
         </div>
       </>
     );

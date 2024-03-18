@@ -111,6 +111,10 @@ export const booksSlice = createSlice({
       });
       localStorage.setItem('bookCart', JSON.stringify(state.bookCart));
     },
+    setDeleteAllBookCart: state => {
+      state.bookCart = [];
+      localStorage.setItem('bookCart', JSON.stringify(state.bookCart));
+    },
   },
   extraReducers: builder => {
     builder
@@ -155,5 +159,5 @@ export const booksSlice = createSlice({
   },
 });
 
-export const { setAddFavorites, setDeleteFavorites, setBook, setInkrement, setDecrement, setDeleteBookCart } = booksSlice.actions;
+export const { setAddFavorites, setDeleteFavorites, setBook, setInkrement, setDecrement, setDeleteBookCart, setDeleteAllBookCart } = booksSlice.actions;
 export const booksReducer = booksSlice.reducer;

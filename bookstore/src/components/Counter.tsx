@@ -7,13 +7,18 @@ interface CounterProps {
 export function Counter(props: CounterProps) {
   return (
     <>
-      <button className="btn btn-primary" onClick={props.handleClickDecrement}>
-        -
-      </button>
+      <div>
+        <button className="btn btn-danger" onClick={props.handleClickDecrement}>
+          <i className="bi bi-dash-lg"></i>
+        </button>
+      </div>
+
       <h2>{props.count}</h2>
-      <button className="btn btn-warning" onClick={props.handleClickIncrement}>
-        +
-      </button>
+      <div>
+        <button className="btn btn-success" onClick={props.handleClickIncrement}>
+          <i className="bi bi-plus-lg"></i>
+        </button>
+      </div>
     </>
   );
 }
