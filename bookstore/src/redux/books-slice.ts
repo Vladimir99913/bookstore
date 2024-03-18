@@ -110,6 +110,7 @@ export const booksSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(fetchNewCards.fulfilled, (state, action: PayloadAction<BookNew[]>) => {
+        state.isLoading = false;
         state.newBooks = action.payload;
       })
       .addCase(fetchNewCards.rejected, (state, action) => {
@@ -121,6 +122,7 @@ export const booksSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(fetchCards.fulfilled, (state, action) => {
+        state.isLoading = false;
         state.book = action.payload;
         console.log(state.book);
       })
@@ -134,6 +136,7 @@ export const booksSlice = createSlice({
       })
       .addCase(fetchSearchCards.fulfilled, (state, action: PayloadAction<Data>) => {
         console.log(action.payload.books);
+        state.isLoading = false;
         state.bookSearch = action.payload.books;
 
         state.pagesCounter = Math.ceil(Number(action.payload.total) / state.limit);

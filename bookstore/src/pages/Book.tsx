@@ -12,17 +12,15 @@ import { BookSearchProps, BookProps } from '../services/book';
 // import { Book, BookNew } from '../types/types'
 
 export function Book() {
+  const isLoading = useAppSelector(state => state.books.isLoading);
+  const error = useAppSelector(state => state.books.error);
   const activeTab = useAppSelector(state => state.tabs.value);
   const cards = useAppSelector(state => state.books.newBooks);
 
   useEffect(() => {
     dispatch(fetchNewCards());
   }, []);
-  // interface Params {
-  //   isbn13: string | undefined;
-  // }
-  // const params = useParams<{isbn13:string}>()
-  // console.log(params)
+
   const { isbn13 } = useParams<{ isbn13: string }>();
   console.log(typeof isbn13);
   const dispatch = useAppDispatch();
@@ -34,26 +32,13 @@ export function Book() {
     }
   }, [isbn13]);
 
-  function renderContent() {
+  function renderTabs() {
     switch (activeTab) {
       case 'tab1':
-        // if (error) {
-        //   return <div className="text-danger">Error: {error}</div>
-        // }
-        // if (isLoading) {
-        //   return <div>Loading...</div>
-        // }
         return (
-          <>
-            <div className="row row-cols-1 row-cols-md-3 w-75 mb-4" style={{ minHeight: '250px' }}>
-              {postById.desc}
-            </div>
-            {/* <nav>
-            <ul className="pagination mt-3">
-              <Pagination pageNumberCurrent={pageNumberCurrent} pagesCounter={pagesCounter} url={'/posts/page/'} />
-            </ul>
-          </nav> */}
-          </>
+          <div className="row row-cols-1 row-cols-md-3 w-75 mb-4" style={{ minHeight: '250px' }}>
+            {postById.desc}
+          </div>
         );
       case 'tab2':
         return (
@@ -72,14 +57,27 @@ export function Book() {
     }
   }
 
+  function renderContent() {
+    if (error) {
+      return <h1 className="text-danger">Error: {error}</h1>;
+    }
+    if (isLoading) {
+      return <h1>Loading...</h1>;
+    }
+    return (
+      <>
+        <Title title={postById.title} />
+        <BookCard {...postById} />
+        <Tabs />
+        {renderTabs()}
+        <Subscribe />
+      </>
+    );
+  }
+
   return (
     <>
-      {' '}
-      <Title title={postById.title} />
-      <BookCard {...postById} />
-      <Tabs />
       {renderContent()}
-      <Subscribe />
       {/* <div className="w-100">
           <div className="d-flex justify-content-between">
             <Title title="Similar books"/>
