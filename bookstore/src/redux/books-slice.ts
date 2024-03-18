@@ -132,7 +132,6 @@ export const booksSlice = createSlice({
       .addCase(fetchCards.fulfilled, (state, action) => {
         state.isLoading = false;
         state.book = action.payload;
-        console.log(state.book);
       })
       .addCase(fetchCards.rejected, (state, action) => {
         state.error = action.error.message;

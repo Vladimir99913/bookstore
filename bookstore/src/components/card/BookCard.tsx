@@ -11,14 +11,25 @@ export function BookCard(props: Book) {
   const booksInCart = useAppSelector(state => state.books.bookCart);
   const bookById = useAppSelector(state => state.books.book);
   // console.log(bookFavorites)
-  console.log(bookById);
-  // useEffect(() => {
-  //   booksInCart.forEach(item => {
-  //     if (item.isbn13 == props.isbn13) {
-  //       setCart(true);
-  //     }
-  //   });
-  // }, [booksInCart]);
+  // console.log(bookById);
+  useEffect(() => {
+    // if (booksInCart.length !== 0 && booksInCart.findIndex(item => item.title == props.title)) {
+    //   console.log(booksInCart.findIndex(item => item.title == props.title));
+    //   setCart(true);
+    // }
+    if (booksInCart.length != 0) {
+      booksInCart.forEach(item => {
+        if (item.isbn13 == props.isbn13) {
+          console.log('yes');
+          setCart(true);
+        }
+      });
+    }
+    // if (!booksInCart.findIndex(item => item.isbn13 == props.isbn13)) {
+    //   console.log(booksInCart.findIndex(item => item.isbn13 == props.isbn13));
+    //   setCart(true);
+    // }
+  }, [booksInCart]);
   function handleClickFavorite() {
     if (active) {
       dispatch(setDeleteFavorites(props.isbn13));

@@ -14,7 +14,6 @@ export function Subscribe() {
 
   function handleClickSubscribe(event: React.MouseEvent<HTMLFormElement>) {
     event.preventDefault();
-    console.log(typeof email);
     if (usersmail.length == 0) {
       dispatch(setSubscribe(email));
       setMessage('new');
@@ -22,7 +21,6 @@ export function Subscribe() {
       if (!usersmail.includes(email)) {
         dispatch(setSubscribe(email));
         setMessage('new');
-        console.log('yes');
       } else {
         setMessage('old');
       }
@@ -31,12 +29,10 @@ export function Subscribe() {
 
   function renderMessage() {
     if (message == 'new') {
-      console.log('new');
       return <p className="fs-4 fw-semibold">You have subscribed to our updates</p>;
     }
 
     if (message == 'old') {
-      console.log('old');
       return <p className="fs-4 fw-semibold">You are already subscribed to our updates</p>;
     }
     return (

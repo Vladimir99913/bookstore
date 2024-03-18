@@ -22,7 +22,7 @@ export function Book() {
   }, []);
 
   const { isbn13 } = useParams<{ isbn13: string }>();
-  console.log(typeof isbn13);
+
   const dispatch = useAppDispatch();
   const postById = useAppSelector(state => state.books.book);
 
