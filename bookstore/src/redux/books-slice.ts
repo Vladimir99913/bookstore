@@ -3,21 +3,41 @@ import { requestNewCards, requestCards, Data, requestSearchCards } from '../serv
 import { Book, BookNew } from '../types/types';
 import { getBookCart, getBookFavorite } from '../utils/localStorage';
 
-export const fetchNewCards = createAsyncThunk('posts/fetchNewCards', async () => {
-  const data = await requestNewCards();
-  return data;
+export const fetchNewCards = createAsyncThunk('posts/fetchNewCards', async (_, { rejectWithValue }) => {
+  try {
+    const data = await requestNewCards();
+    if (!data) {
+      throw new Error('Error');
+    }
+    return data;
+  } catch (error: any) {
+    return rejectWithValue(error.message);
+  }
 });
 
-export const fetchCards = createAsyncThunk<Book, string>('posts/fetchCards', async isbn13 => {
-  const data = await requestCards(isbn13);
-  return data;
+export const fetchCards = createAsyncThunk<Book, string>('posts/fetchCards', async (isbn13, { rejectWithValue }) => {
+  try {
+    const data = await requestCards(isbn13);
+    if (!data) {
+      throw new Error('Error');
+    }
+    return data;
+  } catch (error: any) {
+    return rejectWithValue(error.message);
+  }
 });
 
 type Object = { search: string; pageNumber: string };
-export const fetchSearchCards = createAsyncThunk<Data, Object>('posts/fetchSearchCards', async ({ search, pageNumber = '1' }) => {
-  // const {search, pageNumber = 1} = opts
-  const data = await requestSearchCards({ search, pageNumber });
-  return data;
+export const fetchSearchCards = createAsyncThunk<Data, Object>('posts/fetchSearchCards', async ({ search, pageNumber = '1' }, { rejectWithValue }) => {
+  try {
+    const data = await requestSearchCards({ search, pageNumber });
+    if (!data) {
+      throw new Error('Error');
+    }
+    return data;
+  } catch (error: any) {
+    return rejectWithValue(error.message);
+  }
 });
 
 interface BookState {
