@@ -42,11 +42,15 @@ export function BookSearchList() {
         <nav>
           <ul className="pagination pagination-lg mt-3">
             <li className="page-item ">
-              <span className="page-link">Previous</span>
+              <span className="page-link">
+                <i className="bi bi-arrow-left"></i>
+              </span>
             </li>
             <Pagination pageNumberCurrent={pageNumberCurrent} pagesCounter={pagesCounter} url={`/posts/search/${query}/`} />
             <li className="page-item">
-              <span className="page-link">Next</span>
+              <span className="page-link">
+                <i className="bi bi-arrow-right"></i>
+              </span>
             </li>
           </ul>
         </nav>

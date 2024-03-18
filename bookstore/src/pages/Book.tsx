@@ -36,20 +36,20 @@ export function Book() {
     switch (activeTab) {
       case 'tab1':
         return (
-          <div className="row row-cols-1 row-cols-md-3 w-75 mb-4" style={{ minHeight: '250px' }}>
-            {postById.desc}
+          <div className="w-75 mb-4" style={{ minHeight: '250px' }}>
+            <p className="fs-4 fw-semibold">{postById.desc}</p>
           </div>
         );
       case 'tab2':
         return (
-          <div className="row row-cols-1 row-cols-md-3 w-75" style={{ minHeight: '250px' }}>
-            {postById.authors}
+          <div className="w-75" style={{ minHeight: '250px' }}>
+            <p className="fs-4 fw-semibold">{postById.authors}</p>
           </div>
         );
       case 'tab3':
         return (
-          <div className="row row-cols-1 row-cols-md-3 w-75" style={{ minHeight: '250px' }}>
-            {postById.publisher}
+          <div className="w-75" style={{ minHeight: '250px' }}>
+            <p className="fs-4 fw-semibold">{postById.publisher}</p>
           </div>
         );
       default:

@@ -13,10 +13,10 @@ export function StarRating(props: StarsRatingProps) {
       {stars.map((item, index) => {
         const currentRating = index + 1;
         return (
-          <label key={index}>
-            <input type="radio" name="rating" value={currentRating} style={{ display: 'none' }} />
-            <i className={currentRating <= ratingStars ? 'bi bi-star-fill' : 'bi bi-star'} />
-          </label>
+          <>
+            {/* <input type="radio" name="rating" value={currentRating} style={{ display: 'none' }} /> */}
+            <i className={currentRating <= ratingStars ? 'bi bi-star-fill ms-1' : 'bi bi-star ms-1'} />
+          </>
         );
       })}
     </h3>

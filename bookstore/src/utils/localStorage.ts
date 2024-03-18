@@ -17,3 +17,13 @@ export function getBookCart() {
 
   return bookCart;
 }
+
+export function getUserEmail() {
+  const localUserEmail = localStorage.getItem('userEmail');
+
+  if (!localUserEmail) return [];
+
+  const userEmail = JSON.parse(localUserEmail);
+
+  return userEmail;
+}
