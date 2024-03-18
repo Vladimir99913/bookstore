@@ -17,6 +17,8 @@ export function Navbar() {
     return countSum;
   }
 
+  let countInCart = countBooksCart();
+
   function handleChangeSearch(event: React.ChangeEvent<HTMLInputElement>) {
     setSearch(event.target.value);
   }
@@ -40,20 +42,17 @@ export function Navbar() {
         </form>
         <div>
           <NavLink to="/favorites">
-            <button className="btn btn-outline-success">
-              <i className="bi bi-heart me-2"></i>
-              {booksFavorites.length}
+            <button className="btn btn-outline-success" style={{ minWidth: '65px' }}>
+              <i className="bi bi-heart mx-auto p-2"></i>
+              <span className="fs-6 fw-semibold">{booksFavorites.length ? booksFavorites.length : ''}</span>
             </button>
           </NavLink>
           <NavLink to="/cart">
-            <button className="btn btn-outline-success mx-3">
-              <i className="bi bi-bag  me-2"></i>
-              {}
+            <button className="btn btn-outline-success mx-3" style={{ minWidth: '65px' }}>
+              <i className="bi bi-bag mx-auto p-2"></i>
+              <span className="fs-6 fw-semibold"> {countInCart ? countInCart : ''} </span>
             </button>
           </NavLink>
-          <button className="btn btn-outline-success">
-            <i className="bi bi-person"></i>
-          </button>
         </div>
       </div>
     </nav>
