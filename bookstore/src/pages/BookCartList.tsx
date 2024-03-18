@@ -2,6 +2,8 @@ import { useAppSelector } from '../hooks/hooks';
 import { BookCardCart } from '../components/card/BookCardCart';
 
 export function BookCartList() {
+  const isLoading = useAppSelector(state => state.books.isLoading);
+  const error = useAppSelector(state => state.books.error);
   const booksCart = useAppSelector(state => state.books.bookCart);
 
   function sumBooks() {
@@ -22,29 +24,42 @@ export function BookCartList() {
 
   function sumBooksTotal() {
     let sumTotal: number = sumBooks() + sumBooksVat();
-    // sumTotal = Math.round(sumTotal * 100) / 100
     return sumTotal.toFixed(2);
   }
-  return (
-    <>
-      {booksCart.map((post, index) => (
-        <BookCardCart key={index} {...post} />
-      ))}
-      <div>
-        <div className="d-flex justify-content-between w-25">
-          <div>
-            <p>Sum total</p>
-            <p>VAT</p>
-            <h1>Total:</h1>
+
+  function renderContent() {
+    if (error) {
+      return <h1 className="text-danger">Error: {error}</h1>;
+    }
+    if (isLoading) {
+      return <h1>Loading...</h1>;
+    }
+    if (booksCart.length == 0) {
+      return <h1>Your cart is empty</h1>;
+    }
+    return (
+      <>
+        {booksCart.map((post, index) => (
+          <BookCardCart key={index} {...post} />
+        ))}
+        <div className="w-25 align-self-end">
+          <div className="d-flex justify-content-between">
+            <div>
+              <p>Sum total:</p>
+              <p>VAT:</p>
+              <h1>Total:</h1>
+            </div>
+            <div>
+              <p className="text-end">{sumBooks()}</p>
+              <p className="text-end">{sumBooksVat()}</p>
+              <h1 className="text-end">{sumBooksTotal()}</h1>
+            </div>
           </div>
-          <div>
-            <p>{sumBooks()}</p>
-            <p>{sumBooksVat()}</p>
-            <h1>{sumBooksTotal()}</h1>
-          </div>
+          <button className="btn btn-primary w-100">Check out</button>
         </div>
-        <button className="btn btn-primary w-100">Check</button>
-      </div>
-    </>
-  );
+      </>
+    );
+  }
+
+  return <>{renderContent()}</>;
 }

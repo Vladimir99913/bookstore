@@ -2,7 +2,7 @@ import { useAppDispatch } from '../../hooks/hooks';
 import { useState } from 'react';
 import { Book } from '../../types/types';
 import { Counter } from '../Counter';
-import { setInkrement, setDecrement } from '../../redux/books-slice';
+import { setInkrement, setDecrement, setDeleteBookCart } from '../../redux/books-slice';
 
 export function BookCardCart(props: Book) {
   const dispatch = useAppDispatch();
@@ -19,6 +19,10 @@ export function BookCardCart(props: Book) {
     setCount(counter - 1);
   }
 
+  function handleClickDeleteBook() {
+    dispatch(setDeleteBookCart(props.isbn13));
+  }
+
   return (
     <div className="card mb-5 w-100 border border-0 border-bottom">
       <div className="row g-0 mb-3">
@@ -33,8 +37,13 @@ export function BookCardCart(props: Book) {
               <Counter count={counter} handleClickIncrement={handleClickIncrement} handleClickDecrement={handleClickDecrement} />
             </div>
           </div>
-          <div className="my-auto">
+          <div className="my-auto w-25">
             <h2 className="text-secondary">{props.price}</h2>
+          </div>
+          <div className="my-auto">
+            <button className="btn btn-lg" onClick={handleClickDeleteBook}>
+              <i className="bi bi-x-lg"></i>
+            </button>
           </div>
         </div>
       </div>
