@@ -1,0 +1,21 @@
+.wrapper-delete-all {
+  width: 25%;
+}
+.wrapper-total {
+  width: 25%;
+}
+@media screen and (max-width: 900px) {
+  .wrapper-delete-all {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  .wrapper-total {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .wrapper-total {
+    width: 100%;
+  }
+}

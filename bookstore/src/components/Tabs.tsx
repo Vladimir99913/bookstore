@@ -13,13 +13,13 @@ export function Tabs() {
 
   return (
     <div className="nav nav-tabs w-100 my-5 text-uppercase">
-      <button data-id="tab1" className={`nav-link w-25 fs-4 fw-semibold ${activeTab === 'tab1' ? 'active' : ''}`} onClick={handleToggleTab}>
+      <button data-id="tab1" className={`nav-link fw-semibold ${activeTab === 'tab1' ? 'active' : ''}`} onClick={handleToggleTab}>
         Description
       </button>
-      <button data-id="tab2" className={`nav-link w-25 fs-4 fw-semibold ${activeTab === 'tab2' ? 'active' : ''}`} onClick={handleToggleTab}>
+      <button data-id="tab2" className={`nav-link fw-semibold ${activeTab === 'tab2' ? 'active' : ''}`} onClick={handleToggleTab}>
         Authors
       </button>
-      <button data-id="tab3" className={`nav-link w-25 fs-4 fw-semibold ${activeTab === 'tab3' ? 'active' : ''}`} onClick={handleToggleTab}>
+      <button data-id="tab3" className={`nav-link fw-semibold ${activeTab === 'tab3' ? 'active' : ''}`} onClick={handleToggleTab}>
         Reviews
       </button>
     </div>

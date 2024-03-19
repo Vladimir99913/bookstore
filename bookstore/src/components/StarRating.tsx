@@ -8,7 +8,7 @@ export function StarRating(props: StarsRatingProps) {
 
   const stars = Array(totalStars).fill(0);
   return (
-    <h3 className="my-auto">
+    <>
       {stars.map((item, index) => {
         const currentRating = index + 1;
         return (
@@ -18,6 +18,6 @@ export function StarRating(props: StarsRatingProps) {
           </label>
         );
       })}
-    </h3>
+    </>
   );
 }

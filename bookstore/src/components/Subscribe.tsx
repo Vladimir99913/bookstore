@@ -29,15 +29,15 @@ export function Subscribe() {
 
   function renderMessage() {
     if (message == 'new') {
-      return <p className="fs-4 fw-semibold">You have subscribed to our updates</p>;
+      return <p className="fw-semibold">You have subscribed to our updates</p>;
     }
 
     if (message == 'old') {
-      return <p className="fs-4 fw-semibold">You are already subscribed to our updates</p>;
+      return <p className="fw-semibold">You are already subscribed to our updates</p>;
     }
     return (
       <>
-        <form className="input-group  input-group-lg" onSubmit={handleClickSubscribe}>
+        <form className="input-group" onSubmit={handleClickSubscribe}>
           <input type="email" className="form-control" id="validationDefault02" placeholder="Username email" required value={email} onChange={handleChangeEmail} />
           <button className="btn btn-outline-secondary" type="submit" id="button-addon2">
             Subscribe
@@ -48,10 +48,10 @@ export function Subscribe() {
   }
 
   return (
-    <div className="w-100 p-5 mb-5" style={{ height: '300px', backgroundColor: '#F4EEFD' }}>
+    <div className="wrapper-subscribe w-100 p-5 mb-5">
       <div className="mb-5">
         <h1>Subscribe to Newsletter</h1>
-        <p className="fs-5 fw-normal">Be the first to know about new IT books, upcoming releases, exclusive offers and more.</p>
+        <p className="fw-normal">Be the first to know about new IT books, upcoming releases, exclusive offers and more.</p>
       </div>
       {renderMessage()}
     </div>

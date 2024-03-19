@@ -33,7 +33,7 @@ export function BookCardCart(props: Book) {
           <div className="card-body d-flex flex-column justify-content-evenly">
             <h1 className="text-secondary">{props.title}</h1>
             <h3 className="card-title">{props.authors}</h3>
-            <div className="d-flex justify-content-evenly w-25">
+            <div className="counter d-flex justify-content-evenly">
               <Counter count={counter} handleClickIncrement={handleClickIncrement} handleClickDecrement={handleClickDecrement} />
             </div>
           </div>

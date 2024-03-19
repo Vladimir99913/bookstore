@@ -48,12 +48,12 @@ export function BookCartList() {
         {booksCart.map((post, index) => (
           <BookCardCart key={index} {...post} />
         ))}
-        <div className="w-25 align-self-start">
+        <div className="wrapper-delete-all align-self-start">
           <button className="btn btn-danger btn-lg w-100" onClick={handleClickDelteAll}>
             Delete all
           </button>
         </div>
-        <div className="w-25 align-self-end">
+        <div className="wrapper-total align-self-end">
           <div className="d-flex justify-content-between">
             <div>
               <p className="fs-5 fw-normal">Sum total:</p>

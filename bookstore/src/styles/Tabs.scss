@@ -1,0 +1,23 @@
+.nav-link {
+  width: 25%;
+  font-size: 26px;
+}
+
+@media screen and (max-width: 850px) {
+  .nav-link {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .nav-link {
+    width: 30%;
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .nav-link {
+    font-size: 12px;
+  }
+}

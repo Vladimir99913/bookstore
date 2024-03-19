@@ -1,0 +1,16 @@
+.col {
+  width: 480px;
+  margin-bottom: 60px;
+  .card {
+    min-height: 500px;
+  }
+  .card-body {
+    max-height: 250px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .col {
+    width: 350px;
+  }
+}

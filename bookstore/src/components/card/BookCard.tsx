@@ -50,36 +50,38 @@ export function BookCard(props: Book) {
 
   return (
     <>
-      <div className="d-flex justify-content-between w-100">
-        <div className="d-flex justify-content-center align-items-center " style={{ width: '45%', height: '450px', backgroundColor: '#FEE9E2', position: 'relative' }}>
+      <div className="wrapper">
+        <div className="wrapper-image d-flex justify-content-center align-items-center ">
           <div style={{ width: '300px', height: '300px' }}>
-            <img src={props.image} alt="Astronauts" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            <img src={props.image} alt="Book" />
           </div>
-          <button className="btn btn-dark btn-lg rounded-end-0" onClick={handleClickFavorite} style={{ position: 'absolute', top: '0', right: '0' }}>
+          <button className="btn btn-dark btn-lg rounded-end-0" onClick={handleClickFavorite}>
             <i className={active ? 'bi bi-heart-fill' : 'bi bi-heart'} />
           </button>
         </div>
-        <div style={{ width: '45%', height: '450px' }}>
+        <div className="wrapper-content">
           <div className="d-flex justify-content-between w-100 mt-3">
             <h1>{props.price}</h1>
-            <StarRating rating={props.rating} />
+            <h3 className="my-auto">
+              <StarRating rating={props.rating} />
+            </h3>
           </div>
           <div className="d-flex justify-content-between w-100 mt-2">
             <div>
-              <p className="fs-5 fw-normal">Authors</p>
-              <p className="fs-5 fw-normal">Publisher</p>
-              <p className="fs-5 fw-normal">Published</p>
-              <p className="fs-5 fw-normal">Pages</p>
-              <p className="fs-5 fw-normal">Language</p>
-              <p className="fs-5 fw-normal">Format</p>
+              <p className="fw-normal">Authors</p>
+              <p className="fw-normal">Publisher</p>
+              <p className="fw-normal">Published</p>
+              <p className="fw-normal">Pages</p>
+              <p className="fw-normal">Language</p>
+              <p className="fw-normal">Format</p>
             </div>
             <div>
-              <p className="text-end fs-5 fw-semibold">{props.authors}</p>
-              <p className="text-end fs-5 fw-semibold">{props.publisher}</p>
-              <p className="text-end fs-5 fw-semibold">{props.year}</p>
-              <p className="text-end fs-5 fw-semibold">{props.pages}</p>
-              <p className="text-end fs-5 fw-semibold">{props.language}</p>
-              <p className="text-end fs-5 fw-semibold">Paper book / ebook (PDF)</p>
+              <p className="text-end fw-semibold">{props.authors}</p>
+              <p className="text-end fw-semibold">{props.publisher}</p>
+              <p className="text-end fw-semibold">{props.year}</p>
+              <p className="text-end fw-semibold">{props.pages}</p>
+              <p className="text-end fw-semibold">{props.language}</p>
+              <p className="text-end fw-semibold">Paper book / ebook (PDF)</p>
             </div>
           </div>
           {/* <div> */}

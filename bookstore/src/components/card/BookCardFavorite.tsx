@@ -1,6 +1,7 @@
 import { useAppDispatch } from '../../hooks/hooks';
 import { Book } from '../../types/types';
 import { setDeleteFavorites } from '../../redux/books-slice';
+import { StarRating } from '../StarRating';
 
 export function BookCardFavorite(props: Book) {
   const dispatch = useAppDispatch();
@@ -19,13 +20,15 @@ export function BookCardFavorite(props: Book) {
           <div className="card-body d-flex flex-column justify-content-evenly">
             <h1 className="text-secondary">{props.title}</h1>
             <h3 className="card-title">{props.authors}</h3>
-            <div className="d-flex justify-content-between w-50">
+            <div className="d-flex justify-content-between w-100">
               <h2 className="text-secondary">{props.price}</h2>
-              <h2 className="card-title">{props.rating}</h2>
+              <h3 className="m-auto">
+                <StarRating rating={props.rating} />
+              </h3>
             </div>
           </div>
           <div className="my-auto">
-            <button className="btn btn-dark btn-lg" onClick={handleClickDelteFavorite}>
+            <button className="btn-favorite btn btn-dark btn-lg" onClick={handleClickDelteFavorite}>
               <i className="bi bi-heart-fill" />
             </button>
           </div>
