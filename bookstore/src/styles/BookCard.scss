@@ -1,4 +1,4 @@
-.wrapper {
+.wrapper-book {
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -34,7 +34,7 @@
 }
 
 @media screen and (max-width: 1124px) {
-  .wrapper {
+  .wrapper-book {
     flex-wrap: wrap;
     .wrapper-image {
       width: 100%;

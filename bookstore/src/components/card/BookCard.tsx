@@ -50,7 +50,7 @@ export function BookCard(props: Book) {
 
   return (
     <>
-      <div className="wrapper">
+      <div className="wrapper-book">
         <div className="wrapper-image d-flex justify-content-center align-items-center ">
           <div style={{ width: '300px', height: '300px' }}>
             <img src={props.image} alt="Book" />
