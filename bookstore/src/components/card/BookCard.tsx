@@ -9,20 +9,30 @@ export function BookCard(props: Book) {
   const [active, setActive] = useState(false);
   const [cart, setCart] = useState(false);
   const booksInCart = useAppSelector(state => state.books.bookCart);
-  const bookById = useAppSelector(state => state.books.book);
+  const booksFavorite = useAppSelector(state => state.books.bookFavorites);
   // console.log(bookFavorites)
   // console.log(bookById);
 
   useEffect(() => {
     if (booksInCart.length != 0) {
-      booksInCart.forEach(item => {
+      booksInCart.forEach((item, index) => {
         if (item.isbn13 == props.isbn13) {
-          console.log('yes');
-          setCart(true);
+          setCart(!cart);
         }
       });
     }
-  }, [booksInCart]);
+  }, []);
+
+  useEffect(() => {
+    if (booksFavorite.length != 0) {
+      booksFavorite.forEach((item, index) => {
+        if (item.isbn13 == props.isbn13) {
+          setActive(!active);
+        }
+      });
+    }
+  }, []);
+
   function handleClickFavorite() {
     if (active) {
       dispatch(setDeleteFavorites(props.isbn13));

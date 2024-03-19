@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '../hooks/hooks';
 import { Title } from '../components/Title';
@@ -16,10 +16,6 @@ export function Book() {
   const error = useAppSelector(state => state.books.error);
   const activeTab = useAppSelector(state => state.tabs.value);
   const cards = useAppSelector(state => state.books.newBooks);
-
-  useEffect(() => {
-    dispatch(fetchNewCards());
-  }, []);
 
   const { isbn13 } = useParams<{ isbn13: string }>();
 
