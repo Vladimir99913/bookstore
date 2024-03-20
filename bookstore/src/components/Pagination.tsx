@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 
 interface PaginationProps {
   pagesCounter: number;
-  pageNumberCurrent: any;
+  pageNumberCurrent: string;
   url: string;
 }
 

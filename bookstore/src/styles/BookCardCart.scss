@@ -1,3 +1,7 @@
+.counter {
+  width: 200px;
+}
+
 @media screen and (max-width: 1150px) {
   h1 {
     font-size: 24px;
@@ -27,15 +31,12 @@
 
 @media screen and (max-width: 550px) {
   h1 {
-    font-size: 18px;
+    font-size: 16px;
   }
   h2 {
-    font-size: 16px;
+    font-size: 14px;
   }
   h3 {
     font-size: 12px;
-  }
-  .counter {
-    width: 100px;
   }
 }

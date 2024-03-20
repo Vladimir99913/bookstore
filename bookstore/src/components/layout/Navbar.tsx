@@ -27,6 +27,7 @@ export function Navbar() {
   function handleSubmit(event: React.MouseEvent<HTMLFormElement>) {
     event.preventDefault();
     navigate(`/posts/search/${search}/1`);
+    setSearch('');
   }
 
   function handleClickButton() {
@@ -40,10 +41,10 @@ export function Navbar() {
   return (
     <nav className="navbar bg-body-tertiary" style={{ marginBottom: '70px' }}>
       <div className="d-flex justify-content-between w-100">
-        <NavLink to="/" className="navbar-brand ms-2 mb-0 h1">
+        <NavLink to="/" className="navbar-brand ms-2 mb-0 h1 text-uppercase">
           Vladzimir bookstore
         </NavLink>
-        <button className="navbar-toggler me-2" onClick={handleClickButton}>
+        <button className="navbar-toggler me-2 " onClick={handleClickButton}>
           <i className="bi bi-list"></i>
         </button>
         <div className={`header ${isOpen ? 'active' : ''}`} onClick={event => event.stopPropagation()}>
@@ -57,7 +58,7 @@ export function Navbar() {
           )}
           <form className="d-flex" role="search" onSubmit={handleSubmit}>
             <input className="form-control me-2" type="search" placeholder="Search" value={search} onChange={handleChangeSearch} />
-            <button className="btn btn-outline-success" type="submit">
+            <button className="btn btn-outline-success" type="submit" {...{ disabled: !search }}>
               <i className="bi bi-search"></i>
             </button>
           </form>
