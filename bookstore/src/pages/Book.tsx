@@ -32,7 +32,6 @@ export function Book() {
   useEffect(() => {
     if (booksInCart.length != 0) {
       booksInCart.forEach((item, index) => {
-        // console.log(index);
         if (item.isbn13 == isbn13) {
           setCart(!cart);
         }
@@ -55,7 +54,7 @@ export function Book() {
       dispatch(setDeleteFavorites(bookById.isbn13));
       setActive(false);
     } else {
-      dispatch(setAddFavorites(bookById.isbn13));
+      dispatch(setAddFavorites());
       setActive(true);
     }
   }

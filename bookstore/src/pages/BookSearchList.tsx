@@ -13,8 +13,6 @@ export function BookSearchList() {
   const error = useAppSelector(state => state.books.error);
   const dispatch = useAppDispatch();
   const { query, pageNumberCurrent } = useParams<{ query: string; pageNumberCurrent: string }>();
-  // const { pageNumberCurrent } = useParams();
-  // console.log(pageNumberCurrent);
   const pagesCounter = useAppSelector(state => state.books.pagesCounter);
   console.log(pagesCounter);
   const data = useAppSelector(state => state.books.bookSearch);

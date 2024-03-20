@@ -68,7 +68,7 @@ export const booksSlice = createSlice({
   name: 'books',
   initialState,
   reducers: {
-    setAddFavorites: (state, action) => {
+    setAddFavorites: state => {
       state.bookFavorites.unshift(state.book);
       localStorage.setItem('bookFavorites', JSON.stringify(state.bookFavorites));
     },
@@ -133,7 +133,7 @@ export const booksSlice = createSlice({
       .addCase(fetchCards.pending, state => {
         state.isLoading = true;
       })
-      .addCase(fetchCards.fulfilled, (state, action) => {
+      .addCase(fetchCards.fulfilled, (state, action: PayloadAction<Book>) => {
         state.isLoading = false;
         state.book = action.payload;
       })
