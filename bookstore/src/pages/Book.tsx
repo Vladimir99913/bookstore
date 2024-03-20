@@ -4,23 +4,24 @@ import { useAppSelector, useAppDispatch } from '../hooks/hooks';
 import { Title } from '../components/Title';
 import { fetchCards } from '../redux/books-slice';
 import { BookCard } from '../components/card/BookCard';
-import { BookCardMain } from '../components/card/BookCardMain';
 import { Tabs } from '../components/Tabs';
 import { Subscribe } from '../components/Subscribe';
-import { fetchNewCards } from '../redux/books-slice';
-import { BookSearchProps, BookProps } from '../services/book';
-// import { Book, BookNew } from '../types/types'
+import { setAddFavorites, setDeleteFavorites, setBook } from '../redux/books-slice';
 
 export function Book() {
+  const dispatch = useAppDispatch();
   const isLoading = useAppSelector(state => state.books.isLoading);
   const error = useAppSelector(state => state.books.error);
   const activeTab = useAppSelector(state => state.tabs.value);
-  const cards = useAppSelector(state => state.books.newBooks);
+  const bookById = useAppSelector(state => state.books.book);
+
+  const [active, setActive] = useState(false);
+  const [cart, setCart] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const booksInCart = useAppSelector(state => state.books.bookCart);
+  const booksFavorite = useAppSelector(state => state.books.bookFavorites);
 
   const { isbn13 } = useParams<{ isbn13: string }>();
-
-  const dispatch = useAppDispatch();
-  const postById = useAppSelector(state => state.books.book);
 
   useEffect(() => {
     if (isbn13) {
@@ -28,24 +29,64 @@ export function Book() {
     }
   }, [isbn13]);
 
+  useEffect(() => {
+    if (booksInCart.length != 0) {
+      booksInCart.forEach((item, index) => {
+        // console.log(index);
+        if (item.isbn13 == isbn13) {
+          setCart(!cart);
+        }
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    if (booksFavorite.length != 0) {
+      booksFavorite.forEach((item, index) => {
+        if (item.isbn13 == isbn13) {
+          setActive(!active);
+        }
+      });
+    }
+  }, []);
+
+  function handleClickFavorite() {
+    if (active) {
+      dispatch(setDeleteFavorites(bookById.isbn13));
+      setActive(false);
+    } else {
+      dispatch(setAddFavorites(bookById.isbn13));
+      setActive(true);
+    }
+  }
+
+  function handleClickAddCart() {
+    dispatch(setBook(bookById.isbn13));
+    setCart(true);
+  }
+
+  function handleClickDropDown() {
+    setIsOpen(!isOpen);
+  }
+
   function renderTabs() {
     switch (activeTab) {
       case 'tab1':
         return (
           <div className="w-75 mb-4" style={{ minHeight: '250px' }}>
-            <p className="fs-4 fw-semibold">{postById.desc}</p>
+            <p className="fs-4 fw-semibold">{bookById.desc}</p>
           </div>
         );
       case 'tab2':
         return (
           <div className="w-75" style={{ minHeight: '250px' }}>
-            <p className="fs-4 fw-semibold">{postById.authors}</p>
+            <p className="fs-4 fw-semibold">{bookById.authors}</p>
           </div>
         );
       case 'tab3':
         return (
           <div className="w-75" style={{ minHeight: '250px' }}>
-            <p className="fs-4 fw-semibold">{postById.publisher}</p>
+            <p className="fs-4 fw-semibold">{bookById.publisher}</p>
           </div>
         );
       default:
@@ -62,8 +103,16 @@ export function Book() {
     }
     return (
       <>
-        <Title title={postById.title} />
-        <BookCard {...postById} />
+        <Title title={bookById.title} />
+        <BookCard
+          book={{ ...bookById }}
+          handleClickFavorite={handleClickFavorite}
+          handleClickAddCart={handleClickAddCart}
+          handleClickDropDown={handleClickDropDown}
+          active={active}
+          cart={cart}
+          isOpen={isOpen}
+        />
         <Tabs />
         {renderTabs()}
         <Subscribe />
@@ -71,21 +120,5 @@ export function Book() {
     );
   }
 
-  return (
-    <>
-      {renderContent()}
-      {/* <div className="w-100">
-          <div className="d-flex justify-content-between">
-            <Title title="Similar books"/>
-            <div className="d-flex my-auto ">
-              <button className="btn btn-primary me-2">Prev</button>
-              <button className="btn btn-primary">Next</button>
-            </div>
-          </div>
-              <div className="row row-cols-1 row-cols-md-3 g-4 flex-nowrap" style={{position: 'relative', overflow: 'hidden'}}>
-                 {cards.map((card, index) => <Card key={index} {...card} />)}
-              </div>
-        </div> */}
-    </>
-  );
+  return <>{renderContent()}</>;
 }

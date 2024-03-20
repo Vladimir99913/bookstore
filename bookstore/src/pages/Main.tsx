@@ -20,6 +20,19 @@ export function Main() {
     dispatch(fetchNewCards());
   }, []);
 
+  // const colors: string[] = ['#D7E4FD', '#CAEFF0', '#F4EEFD', '#FEE9E2'];
+
+  // let current = colors[Math.floor(Math.random() * colors.length)];
+  // console.log(current);
+
+  // function randomInteger(min: number, max: number) {
+  //   let rand = min + Math.random() * (max + 1 - min);
+  //   return Math.floor(rand);
+  // }
+
+  // const randomColor = colors[randomInteger(0, colors.length - 1)];
+  // console.log(randomColor);
+
   function renderContent() {
     if (error) {
       return <h1 className="text-danger">Error: {error}</h1>;
