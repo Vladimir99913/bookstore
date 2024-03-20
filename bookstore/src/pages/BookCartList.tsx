@@ -4,6 +4,7 @@ import { BookCardCart } from '../components/card/BookCardCart';
 import { setDeleteAllBookCart } from '../redux/books-slice';
 import { ModalConfirm } from '../components/ModalConfirm';
 import { hideModal, showModal } from '../redux/modal-slice';
+import { Title } from '../components/Title';
 
 export function BookCartList() {
   const dispatch = useAppDispatch();
@@ -12,7 +13,7 @@ export function BookCartList() {
   const error = useAppSelector(state => state.books.error);
   const booksCart = useAppSelector(state => state.books.bookCart);
 
-  function sumBooks() {
+  function sumBooks(): number {
     let sum: number = 0;
     booksCart.forEach(item => {
       sum += Number(item.price.slice(1)) * item.count;
@@ -21,14 +22,14 @@ export function BookCartList() {
     return sum;
   }
 
-  function sumBooksVat() {
+  function sumBooksVat(): number {
     let sum: number = sumBooks();
     sum = sum * 0.1;
     sum = Math.round(sum * 100) / 100;
     return sum;
   }
 
-  function sumBooksTotal() {
+  function sumBooksTotal(): string {
     let sumTotal: number = sumBooks() + sumBooksVat();
     return sumTotal.toFixed(2);
   }
@@ -57,6 +58,7 @@ export function BookCartList() {
     }
     return (
       <>
+        <Title title="Your cart" />
         {booksCart.map((post, index) => (
           <BookCardCart key={index} {...post} />
         ))}

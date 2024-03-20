@@ -1,5 +1,6 @@
 import { useAppSelector } from '../hooks/hooks';
 import { BookCardFavorite } from '../components/card/BookCardFavorite';
+import { Title } from '../components/Title';
 
 export function BookFavoriteList() {
   const isLoading = useAppSelector(state => state.books.isLoading);
@@ -18,6 +19,7 @@ export function BookFavoriteList() {
     }
     return (
       <>
+        <Title title="Favorites" />
         {booksFavorites.map((post, index) => (
           <BookCardFavorite key={index} {...post} />
         ))}
