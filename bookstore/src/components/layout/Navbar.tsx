@@ -68,6 +68,7 @@ export function Navbar() {
                 <button className="btn btn-outline-success" style={{ minWidth: '70px' }}>
                   {isOpen ? <span className="p-2">Favorites</span> : <i className="bi bi-heart mx-auto p-2"></i>}
                   <span className="fs-6 fw-semibold">{booksFavorites.length ? booksFavorites.length : ''}</span>
+                  {/* <span className="badge text-bg-danger rounded-pill"></span> */}
                 </button>
               </NavLink>
             </li>

@@ -8,6 +8,7 @@ export function BookCard(props: Book) {
   const dispatch = useAppDispatch();
   const [active, setActive] = useState(false);
   const [cart, setCart] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const booksInCart = useAppSelector(state => state.books.bookCart);
   const booksFavorite = useAppSelector(state => state.books.bookFavorites);
   // console.log(bookFavorites)
@@ -48,6 +49,10 @@ export function BookCard(props: Book) {
     setCart(true);
   }
 
+  function handleClickDropDown() {
+    setIsOpen(!isOpen);
+  }
+
   return (
     <>
       <div className="wrapper-book">
@@ -60,14 +65,47 @@ export function BookCard(props: Book) {
           </button>
         </div>
         <div className="wrapper-content">
-          <div className="d-flex justify-content-between w-100 mt-3">
+          <div className="d-flex justify-content-between w-100 mt-4">
             <h1>{props.price}</h1>
             <h3 className="my-auto">
               <StarRating rating={props.rating} />
             </h3>
           </div>
-          <div className="d-flex justify-content-between w-100 mt-2">
-            <div>
+          <div className="w-100 mt-2" style={{ minHeight: '290px' }}>
+            <ul className="nav w-100 ">
+              <li className="nav-item">
+                <span>Authors</span>
+                <span>{props.authors}</span>
+              </li>
+              <li className="nav-item">
+                <span>Publisher</span>
+                <span>{props.publisher}</span>
+              </li>
+              <li>
+                <button className="btn btn-light dropdown-toggle" onClick={handleClickDropDown}>
+                  More details
+                </button>
+              </li>
+              <ul className={`nav nav-dropdown w-100 ${isOpen ? 'active' : ''}`}>
+                <li className="nav-item">
+                  <span>Published</span>
+                  <span>{props.year}</span>
+                </li>
+                <li className="nav-item">
+                  <span>Pages</span>
+                  <span>{props.pages}</span>
+                </li>
+                <li className="nav-item">
+                  <span>Language</span>
+                  <span>{props.language}</span>
+                </li>
+                <li className="nav-item">
+                  <span>Format</span>
+                  <span>Paper book / ebook (PDF)</span>
+                </li>
+              </ul>
+            </ul>
+            {/* <div>
               <p className="fw-normal">Authors</p>
               <p className="fw-normal">Publisher</p>
               <p className="fw-normal">Published</p>
@@ -78,14 +116,20 @@ export function BookCard(props: Book) {
             <div>
               <p className="text-end fw-semibold">{props.authors}</p>
               <p className="text-end fw-semibold">{props.publisher}</p>
-              <p className="text-end fw-semibold">{props.year}</p>
-              <p className="text-end fw-semibold">{props.pages}</p>
-              <p className="text-end fw-semibold">{props.language}</p>
-              <p className="text-end fw-semibold">Paper book / ebook (PDF)</p>
-            </div>
+
+              <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Dropdown button
+              </button>
+              <ul className="dropdown-menu">
+                <p className="text-end fw-semibold">{props.year}</p>
+                <p className="text-end fw-semibold">{props.pages}</p>
+                <p className="text-end fw-semibold">{props.language}</p>
+                <p className="text-end fw-semibold">Paper book / ebook (PDF)</p>
+              </ul>
+            </div> */}
           </div>
           {/* <div> */}
-          <button className="btn btn-dark btn-lg w-100 mt-5 text-uppercase fw-bold" {...{ disabled: cart }} onClick={handleClickAddCart}>
+          <button className="btn btn-dark btn-lg w-100 mt-4 text-uppercase fw-bold" {...{ disabled: cart }} onClick={handleClickAddCart}>
             {cart ? 'In cart' : 'Add to cart'}
           </button>
           {/* <button className="btn btn-dark-outline w-50 mx-auto">Preview book</button> */}

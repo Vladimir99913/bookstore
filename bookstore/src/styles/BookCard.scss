@@ -10,7 +10,7 @@
   }
   .wrapper-content {
     width: 45%;
-    height: '450px';
+    height: 450px;
   }
 }
 
@@ -28,8 +28,23 @@
 }
 
 .wrapper-content {
-  p {
+  ul {
     font-size: 20px;
+    overflow: auto;
+    li {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 5px 0;
+    }
+  }
+}
+.wrapper-content {
+  .nav-dropdown {
+    display: none;
+  }
+  .nav-dropdown.active {
+    display: block;
   }
 }
 
@@ -49,7 +64,7 @@
 
 @media screen and (max-width: 800px) {
   .wrapper-content {
-    p {
+    li {
       font-size: 16px;
     }
   }
@@ -57,7 +72,7 @@
 
 @media screen and (max-width: 450px) {
   .wrapper-content {
-    p {
+    li {
       font-size: 12px;
     }
   }
