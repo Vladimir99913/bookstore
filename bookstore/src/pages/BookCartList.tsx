@@ -1,9 +1,12 @@
 import { useAppDispatch, useAppSelector } from '../hooks/hooks';
 import { BookCardCart } from '../components/card/BookCardCart';
 import { setDeleteAllBookCart } from '../redux/books-slice';
+import { Modal } from '../components/Modal';
+import { hideModal, showModal } from '../redux/modal-slice';
 
 export function BookCartList() {
   const dispatch = useAppDispatch();
+  const shownModal = useAppSelector(state => state.modal.shownModal);
   const isLoading = useAppSelector(state => state.books.isLoading);
   const error = useAppSelector(state => state.books.error);
   const booksCart = useAppSelector(state => state.books.bookCart);
@@ -33,6 +36,13 @@ export function BookCartList() {
     dispatch(setDeleteAllBookCart());
   }
 
+  function onHidden() {
+    dispatch(hideModal());
+  }
+
+  function handleClickCheck() {
+    dispatch(showModal());
+  }
   function renderContent() {
     if (error) {
       return <h1 className="text-danger">Error: {error}</h1>;
@@ -75,8 +85,13 @@ export function BookCartList() {
               </h1>
             </div>
           </div>
-          <button className="btn btn-dark btn-lg w-100">Check out</button>
+          <button className="btn btn-dark btn-lg w-100" onClick={handleClickCheck}>
+            Check out
+          </button>
         </div>
+        <Modal shown={shownModal} onHidden={onHidden}>
+          {' asdas'}
+        </Modal>
       </>
     );
   }
