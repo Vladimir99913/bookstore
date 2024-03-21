@@ -1,10 +1,12 @@
 import { useAppDispatch, useAppSelector } from '../hooks/hooks';
-import { useState } from 'react';
+import { useEffect } from 'react';
 import { BookCardCart } from '../components/card/BookCardCart';
 import { setDeleteAllBookCart } from '../redux/books-slice';
 import { ModalConfirm } from '../components/ModalConfirm';
 import { hideModal, showModal } from '../redux/modal-slice';
 import { Title } from '../components/Title';
+import { fetchNewCards } from '../redux/books-slice';
+import { SimilarBooks } from '../components/SimilarBooks';
 
 export function BookCartList() {
   const dispatch = useAppDispatch();
@@ -12,6 +14,11 @@ export function BookCartList() {
   const isLoading = useAppSelector(state => state.books.isLoading);
   const error = useAppSelector(state => state.books.error);
   const booksCart = useAppSelector(state => state.books.bookCart);
+  const booksNew = useAppSelector(state => state.books.newBooks);
+
+  useEffect(() => {
+    dispatch(fetchNewCards());
+  }, []);
 
   function sumBooks(): number {
     let sum: number = 0;
@@ -54,7 +61,12 @@ export function BookCartList() {
       return <h1>Loading...</h1>;
     }
     if (booksCart.length == 0) {
-      return <h1>Your cart is empty</h1>;
+      return (
+        <>
+          <h1>Your cart is empty</h1>
+          <SimilarBooks book={booksNew} title="New book" />
+        </>
+      );
     }
     return (
       <>

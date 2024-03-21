@@ -1,18 +1,37 @@
-import { BookCard } from './card/BookCard';
+import { BookCardMain } from './card/BookCardMain';
+import { BookNew } from '../types/types';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/free-mode';
+import { FreeMode, Pagination } from 'swiper/modules';
+import { Title } from './Title';
 
-export function SimilarBooks() {
-  return {
-    /* <div className="w-100">
-          <div className="d-flex justify-content-between">
-            <Title title="Similar books"/>
-            <div className="d-flex my-auto ">
-              <button className="btn btn-primary me-2">Prev</button>
-              <button className="btn btn-primary">Next</button>
-            </div>
-          </div>
-              <div className="row row-cols-1 row-cols-md-3 g-4 flex-nowrap" style={{position: 'relative', overflow: 'hidden'}}>
-                 {cards.map((card, index) => <Card key={index} {...card} />)}
-              </div>
-        </div> */
-  };
+interface SimilarBooksProps {
+  book: BookNew[];
+  title: string;
+}
+
+export function SimilarBooks(props: SimilarBooksProps) {
+  const books = props.book;
+  return (
+    <>
+      <Title title={props.title} />
+      <Swiper
+        slidesPerView={3}
+        spaceBetween={30}
+        freeMode={true}
+        pagination={{
+          clickable: true,
+        }}
+        modules={[FreeMode, Pagination]}
+        className="mySwiper"
+      >
+        {books.map((book, index) => (
+          <SwiperSlide key={index}>
+            <BookCardMain key={index} {...book} />
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </>
+  );
 }

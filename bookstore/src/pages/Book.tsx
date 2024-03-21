@@ -2,11 +2,12 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '../hooks/hooks';
 import { Title } from '../components/Title';
-import { fetchCards } from '../redux/books-slice';
+import { fetchCards, fetchSearchCards } from '../redux/books-slice';
 import { BookCard } from '../components/card/BookCard';
 import { Tabs } from '../components/Tabs';
 import { Subscribe } from '../components/Subscribe';
 import { setAddFavorites, setDeleteFavorites, setBook } from '../redux/books-slice';
+import { SimilarBooks } from '../components/SimilarBooks';
 
 export function Book() {
   const dispatch = useAppDispatch();
@@ -20,6 +21,7 @@ export function Book() {
   const [isOpen, setIsOpen] = useState(false);
   const booksInCart = useAppSelector(state => state.books.bookCart);
   const booksFavorite = useAppSelector(state => state.books.bookFavorites);
+  const booksSimilar = useAppSelector(state => state.books.bookSearch);
 
   const { isbn13 } = useParams<{ isbn13: string }>();
 
@@ -29,6 +31,13 @@ export function Book() {
     }
   }, [isbn13]);
 
+  useEffect(() => {
+    if (isbn13) {
+      dispatch(fetchSearchCards({ search: bookById.authors, pageNumber: '1' }));
+    }
+  }, [bookById]);
+  console.log(bookById.authors);
+  console.log(booksSimilar);
   useEffect(() => {
     if (booksInCart.length != 0) {
       booksInCart.forEach((item, index) => {
@@ -115,6 +124,7 @@ export function Book() {
         <Tabs />
         {renderTabs()}
         <Subscribe />
+        <SimilarBooks book={booksSimilar} title="Similar book" />
       </>
     );
   }
