@@ -1,4 +1,3 @@
-// Card
 const booksNewEndpoint = `/new`;
 const booksEndpoint = `/books/`;
 

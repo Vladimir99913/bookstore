@@ -14,7 +14,7 @@ export function BookCardMain(props: BookNew) {
   return (
     <div className="col">
       <div className="card">
-        <NavLink to={`/posts/${props.isbn13}`}>
+        <NavLink to={`/books/${props.isbn13}`}>
           <div style={{ width: '100%', height: '250px', marginBottom: '20px', backgroundColor: `#FEE9E2` }}>
             <img src={props.image} className="card-img-top" alt="Books" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
           </div>

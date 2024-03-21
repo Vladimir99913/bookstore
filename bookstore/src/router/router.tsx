@@ -15,23 +15,11 @@ export const router = createBrowserRouter([
         element: <Main />,
       },
       {
-        path: '/posts/:isbn13',
+        path: '/books/:isbn13',
         element: <Book />,
       },
-      // {
-      //   path: '/posts/page/:pageNumber',
-      //   element: <CardList />
-      // },
-      // {
-      //   path: '/sign-in',
-      //   element: <FormSignIn />
-      // },
-      // {
-      //   path: '/sign-up',
-      //   element: <FormSignUp />
-      // },
       {
-        path: '/posts/search/:query/:pageNumberCurrent',
+        path: '/books/search/:query/:pageNumberCurrent',
         element: <BookSearchList />,
       },
       {

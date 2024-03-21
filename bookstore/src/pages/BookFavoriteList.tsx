@@ -34,8 +34,8 @@ export function BookFavoriteList() {
     return (
       <>
         <Title title="Favorites" />
-        {booksFavorites.map((post, index) => (
-          <BookCardFavorite key={index} {...post} />
+        {booksFavorites.map((book, index) => (
+          <BookCardFavorite key={index} {...book} />
         ))}
       </>
     );

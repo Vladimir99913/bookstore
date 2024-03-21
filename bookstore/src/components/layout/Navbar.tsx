@@ -13,7 +13,7 @@ export function Navbar() {
   function countBooksCart() {
     let countSum: number = 0;
     booksCart.forEach(item => {
-      countSum += item.count;
+      countSum += item.count as number;
     });
     return countSum;
   }
@@ -26,7 +26,7 @@ export function Navbar() {
 
   function handleSubmit(event: React.MouseEvent<HTMLFormElement>) {
     event.preventDefault();
-    navigate(`/posts/search/${search}/1`);
+    navigate(`/books/search/${search}/1`);
     setSearch('');
   }
 

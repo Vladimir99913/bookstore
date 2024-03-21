@@ -3,7 +3,7 @@ import { requestNewCards, requestCards, Data, requestSearchCards } from '../serv
 import { Book, BookNew } from '../types/types';
 import { getBookCart, getBookFavorite } from '../utils/localStorage';
 
-export const fetchNewCards = createAsyncThunk('posts/fetchNewCards', async (_, { rejectWithValue }) => {
+export const fetchNewCards = createAsyncThunk<BookNew[]>('posts/fetchNewCards', async (_, { rejectWithValue }) => {
   try {
     const data = await requestNewCards();
     if (!data) {
@@ -88,7 +88,7 @@ export const booksSlice = createSlice({
     setInkrement: (state, action) => {
       state.bookCart.map(item => {
         if (item.isbn13 == action.payload) {
-          item.count = item.count + 1;
+          item.count = (item.count as number) + 1;
           console.log('yes');
         }
         console.log('no');
@@ -98,7 +98,7 @@ export const booksSlice = createSlice({
     setDecrement: (state, action) => {
       state.bookCart.map(item => {
         if (item.isbn13 == action.payload) {
-          item.count = item.count - 1;
+          item.count = (item.count as number) - 1;
         }
       });
       localStorage.setItem('bookCart', JSON.stringify(state.bookCart));
@@ -150,7 +150,7 @@ export const booksSlice = createSlice({
         state.isLoading = false;
         state.bookSearch = action.payload.books;
 
-        state.pagesCounter = Math.ceil(Number(action.payload.total) / state.limit);
+        state.pagesCounter = Math.round(Number(action.payload.total) / state.limit);
       })
       .addCase(fetchSearchCards.rejected, (state, action) => {
         state.error = action.error.message;

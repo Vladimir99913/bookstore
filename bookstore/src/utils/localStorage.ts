@@ -1,4 +1,6 @@
-export function getBookFavorite() {
+import { Book, BookNew } from '../types/types';
+
+export function getBookFavorite(): [] | Book[] {
   const localBookFavorite = localStorage.getItem('bookFavorites');
 
   if (!localBookFavorite) return [];
@@ -8,7 +10,7 @@ export function getBookFavorite() {
   return bookFavorite;
 }
 
-export function getBookCart() {
+export function getBookCart(): [] | Book[] {
   const localBookCart = localStorage.getItem('bookCart');
 
   if (!localBookCart) return [];
@@ -18,7 +20,7 @@ export function getBookCart() {
   return bookCart;
 }
 
-export function getUserEmail() {
+export function getUserEmail(): [] | string[] {
   const localUserEmail = localStorage.getItem('userEmail');
 
   if (!localUserEmail) return [];

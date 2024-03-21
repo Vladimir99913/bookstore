@@ -26,13 +26,13 @@ export function BookSearchList() {
   function handleClickNextPage() {
     const page: number | undefined = Number(pageNumberCurrent);
     const next: number = Number(page) + 1;
-    navigate(`/posts/search/${query}/${next}`);
+    navigate(`/books/search/${query}/${next}`);
   }
 
   function handleClickPrevPage() {
     const page: number | undefined = Number(pageNumberCurrent);
     const prev: number = Number(page) - 1;
-    navigate(`/posts/search/${query}/${prev}`);
+    navigate(`/books/search/${query}/${prev}`);
   }
 
   function renderContent() {
@@ -67,7 +67,7 @@ export function BookSearchList() {
               </button>
             </li>
             <ul className="pagination pagination-lg d-flex">
-              <Pagination pageNumberCurrent={pageNumberCurrent as string} pagesCounter={pagesCounter} url={`/posts/search/${query}/`} />
+              <Pagination pageNumberCurrent={pageNumberCurrent as string} pagesCounter={pagesCounter} url={`/books/search/${query}/`} />
             </ul>
             <li className="page-item">
               <button className="page-link" {...{ disabled: Number(pageNumberCurrent) == Number(pagesCounter) }} onClick={handleClickNextPage}>

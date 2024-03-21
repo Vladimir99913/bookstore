@@ -29,5 +29,5 @@ export interface Book {
   image: string;
   url: string;
   pdf?: Pdf;
-  count?: any;
+  count?: number;
 }

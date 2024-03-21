@@ -1,6 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
+interface TabsProps {
+  value: string;
+}
+
+const initialState: TabsProps = {
   value: 'tab1',
 };
 

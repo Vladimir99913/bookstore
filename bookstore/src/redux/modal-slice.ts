@@ -1,6 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
+interface ModalProps {
+  shownModal: boolean;
+}
+
+const initialState: ModalProps = {
   shownModal: false,
 };
 

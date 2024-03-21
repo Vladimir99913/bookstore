@@ -8,7 +8,7 @@ export function Main() {
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector(state => state.books.isLoading);
   const error = useAppSelector(state => state.books.error);
-  const cards = useAppSelector(state => state.books.newBooks);
+  const booksNew = useAppSelector(state => state.books.newBooks);
 
   useEffect(() => {
     dispatch(fetchNewCards());
@@ -25,8 +25,8 @@ export function Main() {
       <>
         <Title title="New reliase books" />
         <div className="row row-cols-1 row-cols-md-3 g-4">
-          {cards.map((card, index) => (
-            <BookCardMain key={index} {...card} />
+          {booksNew.map((book, index) => (
+            <BookCardMain key={index} {...book} />
           ))}
         </div>
       </>

@@ -23,7 +23,7 @@ export function BookCartList() {
   function sumBooks(): number {
     let sum: number = 0;
     booksCart.forEach(item => {
-      sum += Number(item.price.slice(1)) * item.count;
+      sum += Number(item.price.slice(1)) * (item.count as number);
     });
     sum = Math.round(sum * 100) / 100;
     return sum;
@@ -71,8 +71,8 @@ export function BookCartList() {
     return (
       <>
         <Title title="Your cart" />
-        {booksCart.map((post, index) => (
-          <BookCardCart key={index} {...post} />
+        {booksCart.map((book, index) => (
+          <BookCardCart key={index} {...book} />
         ))}
         <div className="wrapper-delete-all align-self-start">
           <button className="btn btn-danger btn-lg w-100" onClick={handleClickDelteAll}>

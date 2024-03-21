@@ -6,10 +6,6 @@ interface PaginationProps {
   url: string;
 }
 
-// declare interface Array<T> {
-//   at(index: number): T | undefined;
-// }
-
 export function Pagination(props: PaginationProps) {
   const pagesCounter = props.pagesCounter;
 

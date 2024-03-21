@@ -1,10 +1,10 @@
 import { BookCardMain } from './card/BookCardMain';
 import { BookNew } from '../types/types';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/free-mode';
 import { FreeMode, Pagination } from 'swiper/modules';
 import { Title } from './Title';
+import 'swiper/css';
+import 'swiper/css/free-mode';
 
 interface SimilarBooksProps {
   book: BookNew[];
