@@ -72,7 +72,7 @@ export const booksSlice = createSlice({
       state.bookFavorites.unshift(state.book);
       localStorage.setItem('bookFavorites', JSON.stringify(state.bookFavorites));
     },
-    setDeleteFavorites: (state, action) => {
+    setDeleteFavorites: (state, action: PayloadAction<string>) => {
       state.bookFavorites.map((item, index) => {
         if (item.isbn13 == action.payload) {
           state.bookFavorites.splice(index, 1);
@@ -80,12 +80,12 @@ export const booksSlice = createSlice({
       });
       localStorage.setItem('bookFavorites', JSON.stringify(state.bookFavorites));
     },
-    setBook: (state, action) => {
+    setBook: state => {
       state.book.count = 1;
       state.bookCart.unshift(state.book);
       localStorage.setItem('bookCart', JSON.stringify(state.bookCart));
     },
-    setInkrement: (state, action) => {
+    setInkrement: (state, action: PayloadAction<string>) => {
       state.bookCart.map(item => {
         if (item.isbn13 == action.payload) {
           item.count = (item.count as number) + 1;
@@ -95,7 +95,7 @@ export const booksSlice = createSlice({
       });
       localStorage.setItem('bookCart', JSON.stringify(state.bookCart));
     },
-    setDecrement: (state, action) => {
+    setDecrement: (state, action: PayloadAction<string>) => {
       state.bookCart.map(item => {
         if (item.isbn13 == action.payload) {
           item.count = (item.count as number) - 1;
@@ -103,7 +103,7 @@ export const booksSlice = createSlice({
       });
       localStorage.setItem('bookCart', JSON.stringify(state.bookCart));
     },
-    setDeleteBookCart: (state, action) => {
+    setDeleteBookCart: (state, action: PayloadAction<string>) => {
       state.bookCart.map((item, index) => {
         if (item.isbn13 == action.payload) {
           state.bookCart.splice(index, 1);

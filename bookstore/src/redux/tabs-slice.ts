@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface TabsProps {
   value: string;
@@ -12,7 +12,7 @@ export const TabsSlice = createSlice({
   name: 'tabs',
   initialState,
   reducers: {
-    setTabs: (state, action) => {
+    setTabs: (state, action: PayloadAction<string>) => {
       state.value = action.payload;
     },
   },

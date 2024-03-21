@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getUserEmail } from '../utils/localStorage';
 
 interface UserEmail {
@@ -13,7 +13,7 @@ export const SubscribeSlice = createSlice({
   name: 'subscribe',
   initialState,
   reducers: {
-    setSubscribe: (state, action) => {
+    setSubscribe: (state, action: PayloadAction<string>) => {
       state.userEmail.push(action.payload);
       console.log(action.payload);
       localStorage.setItem('userEmail', JSON.stringify(state.userEmail));

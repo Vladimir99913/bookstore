@@ -69,7 +69,7 @@ export function Book() {
   }
 
   function handleClickAddCart() {
-    dispatch(setBook(bookById.isbn13));
+    dispatch(setBook());
     setCart(true);
   }
 
