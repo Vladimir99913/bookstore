@@ -63,8 +63,8 @@ export function BookCartList() {
     if (booksCart.length == 0) {
       return (
         <>
-          <h1>Your cart is empty</h1>
-          <SimilarBooks book={booksNew} title="New book" />
+          <h1 className="mb-5">Your cart is empty</h1>
+          <SimilarBooks book={booksNew} title="Check out the new book" />
         </>
       );
     }

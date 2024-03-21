@@ -10,8 +10,26 @@
   }
 }
 
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 1100px) {
+  .col {
+    width: 300px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .col {
+    width: 500px;
+  }
+}
+
+@media screen and (max-width: 650px) {
   .col {
     width: 350px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .col {
+    width: 250px;
   }
 }

@@ -27,10 +27,10 @@ export function BookCardMain(props: BookNew) {
             {props.subtitle}
           </p>
           <div className="d-flex justify-content-between" style={{ minHeight: '50px' }}>
-            <h2 className="card-title">{props.price}</h2>
-            <h3 className="my-auto">
+            <h4 className="card-title">{props.price}</h4>
+            <h5 className="my-auto">
               <StarRating rating={'4'} />
-            </h3>
+            </h5>
           </div>
         </div>
       </div>

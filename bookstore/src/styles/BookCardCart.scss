@@ -1,8 +1,4 @@
-.counter {
-  width: 200px;
-}
-
-@media screen and (max-width: 1150px) {
+.col-md-10 {
   h1 {
     font-size: 24px;
   }
@@ -12,17 +8,28 @@
   h3 {
     font-size: 20px;
   }
+}
+.counter {
+  width: 200px;
+}
+
+@media screen and (max-width: 1150px) {
   .counter {
     width: 300px;
   }
 }
 
 @media screen and (max-width: 900px) {
-  h2 {
-    font-size: 18px;
-  }
-  h3 {
-    font-size: 16px;
+  .col-md-10 {
+    h1 {
+      font-size: 20px;
+    }
+    h2 {
+      font-size: 18px;
+    }
+    h3 {
+      font-size: 16px;
+    }
   }
   .counter {
     width: 200px;
@@ -30,13 +37,17 @@
 }
 
 @media screen and (max-width: 550px) {
-  h1 {
-    font-size: 16px;
-  }
-  h2 {
-    font-size: 14px;
-  }
-  h3 {
-    font-size: 12px;
+  .col-md-10 {
+    flex-direction: column;
+    align-items: center;
+    h1 {
+      font-size: 12px;
+    }
+    h2 {
+      font-size: 12px;
+    }
+    h3 {
+      font-size: 10px;
+    }
   }
 }

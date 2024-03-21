@@ -71,9 +71,16 @@
 }
 
 @media screen and (max-width: 450px) {
-  .wrapper-content {
-    li {
-      font-size: 12px;
+  .wrapper-book {
+    .wrapper-image {
+      height: 300px;
+      background-color: #fee9e2;
+      position: relative;
+    }
+    .wrapper-content {
+      li {
+        font-size: 12px;
+      }
     }
   }
 }

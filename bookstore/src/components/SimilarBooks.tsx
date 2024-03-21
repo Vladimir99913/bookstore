@@ -17,7 +17,7 @@ export function SimilarBooks(props: SimilarBooksProps) {
     <>
       <Title title={props.title} />
       <Swiper
-        slidesPerView={3}
+        slidesPerView={1}
         spaceBetween={30}
         freeMode={true}
         pagination={{
@@ -25,6 +25,14 @@ export function SimilarBooks(props: SimilarBooksProps) {
         }}
         modules={[FreeMode, Pagination]}
         className="mySwiper"
+        breakpoints={{
+          1100: {
+            slidesPerView: 3,
+          },
+          900: {
+            slidesPerView: 2,
+          },
+        }}
       >
         {books.map((book, index) => (
           <SwiperSlide key={index}>

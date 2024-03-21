@@ -1,42 +1,3 @@
-// .carousel {
-//   position: relative;
-//   width: 100%;
-//   height: 600px;
-//   padding: 10px 40px;
-//   // border: 1px solid #ccc;
-//   // border-radius: 15px;
-//   background: #fff;
-// }
-
-// .carousel li .col {
-//   width: 385px;
-//   height: 450px;
-//   /* делаем этот элемент блочным, чтобы убрать лишнее пространство вокруг картинок */
-//   // display: block;
-// }
-
-// .gallery {
-//   width: 100%;
-//   overflow: hidden;
-// }
-
-// .gallery ul {
-//   height: 100%;
-//   width: 9999px;
-//   margin: 0;
-//   padding: 0;
-//   list-style: none;
-//   transition: margin-left 250ms;
-//   /* удаляем пустое пространство между элементами li, у которых установлен inline-block */
-//   /* http://davidwalsh.name/remove-whitespace-inline-block */
-//   font-size: 0;
-// }
-
-// .gallery li {
-//   display: inline-block;
-//   margin: 0 30px;
-// }
-
 .swiper {
   width: 100%;
   height: 100%;
@@ -44,7 +5,6 @@
 
 .swiper-slide {
   background: #fff;
-  /* Center slide text vertically */
   display: flex;
   justify-content: center;
   align-items: center;

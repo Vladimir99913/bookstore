@@ -27,7 +27,7 @@ export function BookFavoriteList() {
       return (
         <>
           <h1 className="mb-5">You don't have any favorite book yet</h1>
-          <SimilarBooks book={booksNew} title="New book" />
+          <SimilarBooks book={booksNew} title="Check out the new book" />
         </>
       );
     }
