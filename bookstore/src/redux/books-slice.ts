@@ -1,35 +1,22 @@
-import { createSlice, createAsyncThunk, PayloadAction, createAction } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { requestNewCards, requestCards, Data, requestSearchCards } from '../services/book';
 import { Book, BookNew } from '../types/types';
 import { getBookCart, getBookFavorite } from '../utils/localStorage';
-import { call, put, select } from 'redux-saga/effects';
 
-// export function* fetchNewCardsSaga() {
-//   yield put(setLoading(true));
+// export const fetchNewCards = createAsyncThunk<BookNew[], undefined, { rejectValue: string }>('books/fetchNewCards', async (_, { rejectWithValue }) => {
 //   try {
-//     const data: BookNew[] = yield call(requestNewCards);
-//     yield put(getPostsSuccess(data));
-//     yield put(setLoading(false));
+//     const data = await requestNewCards();
+//     if (!data) {
+//       throw new Error('Error');
+//     }
+//     return data;
 //   } catch (error) {
-//     yield put(setError(error));
-//     yield put(setLoading(false));
+//     if (error instanceof Error) {
+//       return rejectWithValue(error.message);
+//     }
+//     return rejectWithValue('Something went wrong');
 //   }
-// }
-
-export const fetchNewCards = createAsyncThunk<BookNew[], undefined, { rejectValue: string }>('books/fetchNewCards', async (_, { rejectWithValue }) => {
-  try {
-    const data = await requestNewCards();
-    if (!data) {
-      throw new Error('Error');
-    }
-    return data;
-  } catch (error) {
-    if (error instanceof Error) {
-      return rejectWithValue(error.message);
-    }
-    return rejectWithValue('Something went wrong');
-  }
-});
+// });
 
 export const fetchCards = createAsyncThunk<Book, string, { rejectValue: string }>('books/fetchCards', async (isbn13, { rejectWithValue }) => {
   try {
@@ -135,30 +122,20 @@ export const booksSlice = createSlice({
       state.bookCart = [];
       localStorage.setItem('bookCart', JSON.stringify(state.bookCart));
     },
-
-    // getPostsSuccess: (state, action) => {
-    //   state.newBooks = action.payload;
-    // },
-    // setLoading: (state, action) => {
-    //   state.isLoading = action.payload;
-    // },
-    // setError: (state, action) => {
-    //   state.error = action.payload;
-    // },
   },
   extraReducers: builder => {
     builder
-      .addCase(fetchNewCards.pending, state => {
-        state.isLoading = true;
-      })
-      .addCase(fetchNewCards.fulfilled, (state, action: PayloadAction<BookNew[]>) => {
-        state.isLoading = false;
-        state.newBooks = action.payload;
-      })
-      .addCase(fetchNewCards.rejected, (state, action) => {
-        state.error = action.error.message;
-        state.isLoading = false;
-      })
+      // .addCase(fetchNewCards.pending, state => {
+      //   state.isLoading = true;
+      // })
+      // .addCase(fetchNewCards.fulfilled, (state, action: PayloadAction<BookNew[]>) => {
+      //   state.isLoading = false;
+      //   state.newBooks = action.payload;
+      // })
+      // .addCase(fetchNewCards.rejected, (state, action) => {
+      //   state.error = action.error.message;
+      //   state.isLoading = false;
+      // })
 
       .addCase(fetchCards.pending, state => {
         state.isLoading = true;
@@ -188,10 +165,5 @@ export const booksSlice = createSlice({
   },
 });
 
-// Actions
-// export const FETCH_BOOKS = 'books/fetchNewCards';
-// export const fetchNewCards = createAction(FETCH_BOOKS);
-
 export const { setAddFavorites, setDeleteFavorites, setBook, setInkrement, setDecrement, setDeleteBookCart, setDeleteAllBookCart } = booksSlice.actions;
-// export const { setAddFavorites, setDeleteFavorites, setBook, setInkrement, setDecrement, setDeleteBookCart, setDeleteAllBookCart, getPostsSuccess, setLoading, setError } = booksSlice.actions;
 export const booksReducer = booksSlice.reducer;

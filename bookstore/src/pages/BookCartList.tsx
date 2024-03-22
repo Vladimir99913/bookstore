@@ -5,7 +5,7 @@ import { setDeleteAllBookCart } from '../redux/books-slice';
 import { ModalConfirm } from '../components/ModalConfirm';
 import { hideModal, showModal } from '../redux/modal-slice';
 import { Title } from '../components/Title';
-import { fetchNewCards } from '../redux/books-slice';
+import { fetchNewCards } from '../redux/books-new-slice';
 import { SimilarBooks } from '../components/SimilarBooks';
 
 export function BookCartList() {
@@ -13,8 +13,10 @@ export function BookCartList() {
   const shownModal = useAppSelector(state => state.modal.shownModal);
   const isLoading = useAppSelector(state => state.books.isLoading);
   const error = useAppSelector(state => state.books.error);
+  const isLoadingNewBooks = useAppSelector(state => state.booksNew.isLoading);
+  const errorNewBooks = useAppSelector(state => state.booksNew.error);
   const booksCart = useAppSelector(state => state.books.bookCart);
-  const booksNew = useAppSelector(state => state.books.newBooks);
+  const booksNew = useAppSelector(state => state.booksNew.newBooks);
 
   useEffect(() => {
     dispatch(fetchNewCards());
@@ -54,10 +56,10 @@ export function BookCartList() {
   }
 
   function renderContent() {
-    if (error) {
-      return <h1 className="text-danger">Error: {error}</h1>;
+    if (error || errorNewBooks) {
+      return <h1 className="text-danger">Error: {errorNewBooks}</h1>;
     }
-    if (isLoading) {
+    if (isLoading || isLoadingNewBooks) {
       return <h1>Loading...</h1>;
     }
     if (booksCart.length == 0) {
