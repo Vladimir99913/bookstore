@@ -6,6 +6,7 @@ interface BookCardProps {
   handleClickFavorite: () => void;
   handleClickAddCart: () => void;
   handleClickDropDown: () => void;
+  handleClickImage: () => void;
   active: boolean;
   cart: boolean;
   isOpen: boolean;
@@ -16,7 +17,7 @@ export function BookCard(props: BookCardProps) {
     <>
       <div className="wrapper-book">
         <div className="wrapper-image d-flex justify-content-center align-items-center ">
-          <div style={{ width: '300px', height: '300px' }}>
+          <div style={{ width: '300px', height: '300px' }} onClick={props.handleClickImage}>
             <img src={props.book.image} alt="Book" />
           </div>
           <button className="btn btn-dark btn-lg rounded-end-0" onClick={props.handleClickFavorite}>

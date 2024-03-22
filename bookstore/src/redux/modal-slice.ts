@@ -2,10 +2,12 @@ import { createSlice } from '@reduxjs/toolkit';
 
 interface ModalProps {
   shownModal: boolean;
+  imageUrl: string;
 }
 
 const initialState: ModalProps = {
   shownModal: false,
+  imageUrl: '',
 };
 
 export const ModalSlice = createSlice({
@@ -18,8 +20,11 @@ export const ModalSlice = createSlice({
     hideModal: state => {
       state.shownModal = false;
     },
+    setImage: (state, action) => {
+      state.imageUrl = action.payload;
+    },
   },
 });
 
-export const { showModal, hideModal } = ModalSlice.actions;
+export const { showModal, hideModal, setImage } = ModalSlice.actions;
 export const modalReducer = ModalSlice.reducer;

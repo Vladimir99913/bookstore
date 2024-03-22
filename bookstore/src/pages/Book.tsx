@@ -8,9 +8,12 @@ import { Tabs } from '../components/Tabs';
 import { Subscribe } from '../components/Subscribe';
 import { setAddFavorites, setDeleteFavorites, setBook } from '../redux/books-slice';
 import { SimilarBooks } from '../components/SimilarBooks';
+import { ImagePreviewModal } from '../components/ImagePreviewModal';
+import { setImage, hideModal, showModal } from '../redux/modal-slice';
 
 export function Book() {
   const dispatch = useAppDispatch();
+  const shownModal = useAppSelector(state => state.modal.shownModal);
   const isLoading = useAppSelector(state => state.books.isLoading);
   const error = useAppSelector(state => state.books.error);
   const activeTab = useAppSelector(state => state.tabs.value);
@@ -76,6 +79,10 @@ export function Book() {
     setIsOpen(!isOpen);
   }
 
+  function onHidden() {
+    dispatch(hideModal());
+  }
+
   function renderTabs() {
     switch (activeTab) {
       case 'tab1':
@@ -101,6 +108,11 @@ export function Book() {
     }
   }
 
+  function handleClickImage() {
+    dispatch(setImage(bookById.image));
+    dispatch(showModal());
+  }
+
   function renderContent() {
     if (error) {
       return <h1 className="text-danger">Error: {error}</h1>;
@@ -116,6 +128,7 @@ export function Book() {
           handleClickFavorite={handleClickFavorite}
           handleClickAddCart={handleClickAddCart}
           handleClickDropDown={handleClickDropDown}
+          handleClickImage={handleClickImage}
           active={active}
           cart={cart}
           isOpen={isOpen}
@@ -124,6 +137,7 @@ export function Book() {
         {renderTabs()}
         <Subscribe />
         <SimilarBooks book={booksSimilar} title="Similar book" />
+        <ImagePreviewModal shown={shownModal} onHidden={onHidden} />
       </>
     );
   }

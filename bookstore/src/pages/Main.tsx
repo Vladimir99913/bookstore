@@ -3,6 +3,7 @@ import { BookCardMain } from '../components/card/BookCardMain';
 import { fetchNewCards } from '../redux/books-slice';
 import { useAppSelector, useAppDispatch } from '../hooks/hooks';
 import { Title } from '../components/Title';
+import { ImagePreviewModal } from '../components/ImagePreviewModal';
 
 export function Main() {
   const dispatch = useAppDispatch();
