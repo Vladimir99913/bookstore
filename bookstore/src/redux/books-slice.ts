@@ -1,9 +1,21 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, PayloadAction, createAction } from '@reduxjs/toolkit';
 import { requestNewCards, requestCards, Data, requestSearchCards } from '../services/book';
 import { Book, BookNew } from '../types/types';
 import { getBookCart, getBookFavorite } from '../utils/localStorage';
+import { call, put, select } from 'redux-saga/effects';
 
-export const fetchNewCards = createAsyncThunk<BookNew[]>('posts/fetchNewCards', async (_, { rejectWithValue }) => {
+// export function* fetchNewCardsSaga() {
+//   yield put(setLoading(true));
+//   try {
+//     const data: BookNew[] = yield call(requestNewCards);
+//     yield put(getPostsSuccess(data));
+//     yield put(setLoading(false));
+//   } catch (error) {
+//     yield put(setError(error));
+//   }
+// }
+
+export const fetchNewCards = createAsyncThunk<BookNew[]>('books/fetchNewCards', async (_, { rejectWithValue }) => {
   try {
     const data = await requestNewCards();
     if (!data) {
@@ -15,7 +27,7 @@ export const fetchNewCards = createAsyncThunk<BookNew[]>('posts/fetchNewCards', 
   }
 });
 
-export const fetchCards = createAsyncThunk<Book, string>('posts/fetchCards', async (isbn13, { rejectWithValue }) => {
+export const fetchCards = createAsyncThunk<Book, string>('books/fetchCards', async (isbn13, { rejectWithValue }) => {
   try {
     const data = await requestCards(isbn13);
     if (!data) {
@@ -28,7 +40,7 @@ export const fetchCards = createAsyncThunk<Book, string>('posts/fetchCards', asy
 });
 
 type Object = { search: string; pageNumber: string };
-export const fetchSearchCards = createAsyncThunk<Data, Object>('posts/fetchSearchCards', async ({ search, pageNumber = '1' }, { rejectWithValue }) => {
+export const fetchSearchCards = createAsyncThunk<Data, Object>('books/fetchSearchCards', async ({ search, pageNumber = '1' }, { rejectWithValue }) => {
   try {
     const data = await requestSearchCards({ search, pageNumber });
     if (!data) {
@@ -115,6 +127,16 @@ export const booksSlice = createSlice({
       state.bookCart = [];
       localStorage.setItem('bookCart', JSON.stringify(state.bookCart));
     },
+
+    // getPostsSuccess: (state, action) => {
+    //   state.newBooks = action.payload;
+    // },
+    // setLoading: (state, action) => {
+    //   state.isLoading = action.payload;
+    // },
+    // setError: (state, action) => {
+    //   state.error = action.payload;
+    // },
   },
   extraReducers: builder => {
     builder
@@ -159,5 +181,10 @@ export const booksSlice = createSlice({
   },
 });
 
+// Actions
+// export const FETCH_BOOKS = 'books/fetchNewCards';
+// export const fetchNewCards = createAction(FETCH_BOOKS);
+
 export const { setAddFavorites, setDeleteFavorites, setBook, setInkrement, setDecrement, setDeleteBookCart, setDeleteAllBookCart } = booksSlice.actions;
+// export const { setAddFavorites, setDeleteFavorites, setBook, setInkrement, setDecrement, setDeleteBookCart, setDeleteAllBookCart, getPostsSuccess, setLoading, setError } = booksSlice.actions;
 export const booksReducer = booksSlice.reducer;
