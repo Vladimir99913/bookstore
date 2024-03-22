@@ -13,6 +13,10 @@
   width: 200px;
 }
 
+.confirm {
+  width: 400px;
+  height: 250px;
+}
 @media screen and (max-width: 1150px) {
   .counter {
     width: 300px;
@@ -34,6 +38,10 @@
   .counter {
     width: 200px;
   }
+  .confirm {
+    width: 350px;
+    height: 300px;
+  }
 }
 
 @media screen and (max-width: 550px) {
@@ -49,5 +57,9 @@
     h3 {
       font-size: 10px;
     }
+  }
+  .confirm {
+    width: 320px;
+    height: 300px;
   }
 }

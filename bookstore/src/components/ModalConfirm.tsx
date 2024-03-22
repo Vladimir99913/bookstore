@@ -9,7 +9,7 @@ interface ModalConfirmProps {
 export function ModalConfirm(props: ModalConfirmProps) {
   return (
     <Modal shown={props.shown} onHidden={props.onHidden}>
-      <div style={{ width: '400px', height: '250px' }}>
+      <div className="confirm">
         <div className="d-flex justify-content-between">
           <h3 className=""> Confirm modal </h3>
           <button className="btn btn-lg my-auto" onClick={props.onHidden}>

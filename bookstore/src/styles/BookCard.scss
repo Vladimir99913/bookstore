@@ -47,7 +47,9 @@
     display: block;
   }
 }
-
+.image-preview {
+  width: 500px;
+}
 @media screen and (max-width: 1124px) {
   .wrapper-book {
     flex-wrap: wrap;
@@ -60,6 +62,9 @@
       border-top: 2px solid grey;
     }
   }
+  .image-preview {
+    width: 400px;
+  }
 }
 
 @media screen and (max-width: 800px) {
@@ -67,6 +72,9 @@
     li {
       font-size: 16px;
     }
+  }
+  .image-preview {
+    width: 300px;
   }
 }
 
@@ -82,5 +90,8 @@
         font-size: 12px;
       }
     }
+  }
+  .image-preview {
+    width: 200px;
   }
 }

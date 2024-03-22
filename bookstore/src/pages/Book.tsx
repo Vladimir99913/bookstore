@@ -2,12 +2,11 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '../hooks/hooks';
 import { Title } from '../components/Title';
-import { fetchCards, fetchSearchCards } from '../redux/books-slice';
+import { fetchCards } from '../redux/books-slice';
 import { BookCard } from '../components/card/BookCard';
 import { Tabs } from '../components/Tabs';
 import { Subscribe } from '../components/Subscribe';
 import { setAddFavorites, setDeleteFavorites, setBook } from '../redux/books-slice';
-import { SimilarBooks } from '../components/SimilarBooks';
 import { ImagePreviewModal } from '../components/ImagePreviewModal';
 import { setImage, hideModal, showModal } from '../redux/modal-slice';
 
@@ -24,7 +23,6 @@ export function Book() {
   const [isOpen, setIsOpen] = useState(false);
   const booksInCart = useAppSelector(state => state.books.bookCart);
   const booksFavorite = useAppSelector(state => state.books.bookFavorites);
-  const booksSimilar = useAppSelector(state => state.books.bookSearch);
 
   const { isbn13 } = useParams<{ isbn13: string }>();
 
@@ -33,12 +31,6 @@ export function Book() {
       dispatch(fetchCards(isbn13));
     }
   }, [isbn13]);
-
-  useEffect(() => {
-    if (isbn13) {
-      dispatch(fetchSearchCards({ search: bookById.authors, pageNumber: '1' }));
-    }
-  }, [bookById]);
 
   useEffect(() => {
     if (booksInCart.length != 0) {
@@ -136,7 +128,6 @@ export function Book() {
         <Tabs />
         {renderTabs()}
         <Subscribe />
-        <SimilarBooks book={booksSimilar} title="Similar book" />
         <ImagePreviewModal shown={shownModal} onHidden={onHidden} />
       </>
     );
