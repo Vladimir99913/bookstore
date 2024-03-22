@@ -10,16 +10,16 @@ export function Pagination(props: PaginationProps) {
   const pagesCounter = props.pagesCounter;
 
   function buildPaginationScheme() {
-    const prevPageNumber = +props.pageNumberCurrent - 1; // предполагаемая предыдущая страница, может получиться отрицательной
-    const nextPageNumber = +props.pageNumberCurrent + 1; // предполагаемая следующая страница, может получиться больше максимальной
-    const scheme = [1, prevPageNumber, +props.pageNumberCurrent, nextPageNumber, pagesCounter]; // строим схему
-    const filteredScheme = scheme.filter(item => item > 0 && item <= pagesCounter); // чистим те, которые меньше 0 или больше pagesCounter
-    const set = new Set(filteredScheme); // удаляем дубли
-    const result: any[] = Array.from(set); // обратно приводим к массиву
+    const prevPageNumber = +props.pageNumberCurrent - 1;
+    const nextPageNumber = +props.pageNumberCurrent + 1;
+    const scheme = [1, prevPageNumber, +props.pageNumberCurrent, nextPageNumber, pagesCounter];
+    const filteredScheme = scheme.filter(item => item > 0 && item <= pagesCounter);
+    const set = new Set(filteredScheme);
+    const result: any[] = Array.from(set);
 
     if (pagesCounter > 3) {
-      if (result[0] + 1 !== result[1]) result.splice(1, 0, '...'); // если между первым и вторым элементом пропуск, вставляем ...
-      if (result[result.length - 2] + 1 !== result[result.length - 1]) result.splice(result.length - 1, 0, '...'); // если между последним и предпоследним пропуск, вставляем ...
+      if (result[0] + 1 !== result[1]) result.splice(1, 0, '...');
+      if (result[result.length - 2] + 1 !== result[result.length - 1]) result.splice(result.length - 1, 0, '...');
     }
 
     return result;

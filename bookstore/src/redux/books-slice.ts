@@ -101,9 +101,7 @@ export const booksSlice = createSlice({
       state.bookCart.map(item => {
         if (item.isbn13 == action.payload) {
           item.count = (item.count as number) + 1;
-          console.log('yes');
         }
-        console.log('no');
       });
       localStorage.setItem('bookCart', JSON.stringify(state.bookCart));
     },
@@ -168,7 +166,6 @@ export const booksSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(fetchSearchCards.fulfilled, (state, action: PayloadAction<Data>) => {
-        console.log(action.payload.books);
         state.isLoading = false;
         state.bookSearch = action.payload.books;
 

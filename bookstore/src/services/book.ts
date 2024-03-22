@@ -29,7 +29,6 @@ async function requestCards(isbn13: string) {
 
 async function requestSearchCards({ search, pageNumber }: BookSearchProps) {
   const { data } = await client.get(`/search/${search}/${pageNumber}`);
-  console.log(data);
   return data;
 }
 

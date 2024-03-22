@@ -29,7 +29,7 @@ export function BookCardCart(props: Book) {
       <div className="row g-0 mb-3">
         <div className="col-md-2" style={{ backgroundColor: '#FEE9E2' }}>
           <NavLink to={`/books/${props.isbn13}`}>
-            <img src={props.image} className="img-fluid" alt="Astronauts" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            <img src={props.image} className="img-fluid" alt="Book" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           </NavLink>
         </div>
         <div className="col-md-10 d-flex justify-content-between">

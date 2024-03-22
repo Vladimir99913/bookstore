@@ -8,7 +8,7 @@ export function Tabs() {
 
   function handleToggleTab(event: React.MouseEvent<HTMLButtonElement>) {
     const { id } = (event.target as HTMLButtonElement).dataset;
-    dispatch(setTabs(id));
+    dispatch(setTabs(id as string));
   }
 
   return (

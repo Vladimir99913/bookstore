@@ -68,7 +68,6 @@ export function Navbar() {
                 <NavLink to="/favorites">
                   <button className="btn btn-outline-primary" style={{ minWidth: '80px' }}>
                     {isOpen ? <span className="p-2">Favorites</span> : <i className="bi bi-heart mx-auto p-2"></i>}
-                    {/* <span className="fs-6 fw-semibold">{booksFavorites.length ? booksFavorites.length : ''}</span> */}
                     <span className="badge text-bg-danger rounded-pill">{booksFavorites.length ? booksFavorites.length : ''}</span>
                   </button>
                 </NavLink>
@@ -77,7 +76,6 @@ export function Navbar() {
                 <NavLink to="/cart">
                   <button className="btn btn-outline-primary mx-3" style={{ minWidth: '80px' }}>
                     {isOpen ? <span className="p-2">Cart</span> : <i className="bi bi-bag mx-auto p-2"></i>}
-                    {/* <span className="fs-6 fw-semibold"> {countInCart ? countInCart : ''} </span> */}
                     <span className="badge text-bg-danger rounded-pill">{countInCart ? countInCart : ''}</span>
                   </button>
                 </NavLink>

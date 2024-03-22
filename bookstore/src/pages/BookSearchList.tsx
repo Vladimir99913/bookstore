@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../hooks/hooks';
 import { BookCardMain } from '../components/card/BookCardMain';
 import { fetchSearchCards } from '../redux/books-slice';
@@ -8,13 +8,11 @@ import { Title } from '../components/Title';
 
 export function BookSearchList() {
   const navigate = useNavigate();
-  const [disable, setDisable] = useState(false);
   const isLoading = useAppSelector(state => state.books.isLoading);
   const error = useAppSelector(state => state.books.error);
   const dispatch = useAppDispatch();
   const { query, pageNumberCurrent } = useParams<{ query: string; pageNumberCurrent: string }>();
   const pagesCounter = useAppSelector(state => state.books.pagesCounter);
-  console.log(pagesCounter);
   const data = useAppSelector(state => state.books.bookSearch);
 
   useEffect(() => {

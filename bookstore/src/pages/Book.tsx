@@ -36,8 +36,7 @@ export function Book() {
       dispatch(fetchSearchCards({ search: bookById.authors, pageNumber: '1' }));
     }
   }, [bookById]);
-  console.log(bookById.authors);
-  console.log(booksSimilar);
+
   useEffect(() => {
     if (booksInCart.length != 0) {
       booksInCart.forEach((item, index) => {

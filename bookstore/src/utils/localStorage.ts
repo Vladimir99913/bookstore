@@ -1,4 +1,4 @@
-import { Book, BookNew } from '../types/types';
+import { Book } from '../types/types';
 
 export function getBookFavorite(): [] | Book[] {
   const localBookFavorite = localStorage.getItem('bookFavorites');

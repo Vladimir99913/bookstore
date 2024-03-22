@@ -15,7 +15,6 @@ export const SubscribeSlice = createSlice({
   reducers: {
     setSubscribe: (state, action: PayloadAction<string>) => {
       state.userEmail.push(action.payload);
-      console.log(action.payload);
       localStorage.setItem('userEmail', JSON.stringify(state.userEmail));
     },
   },

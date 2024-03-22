@@ -3,20 +3,12 @@ import { NavLink } from 'react-router-dom';
 import { StarRating } from '../StarRating';
 
 export function BookCardMain(props: BookNew) {
-  // const colors: string[] = ['#D7E4FD', '#CAEFF0', '#F4EEFD', '#FEE9E2'];
-  // function randomInteger(min: number, max: number) {
-  //   let rand = min + Math.random() * (max + 1 - min);
-  //   return Math.floor(rand);
-  // }
-  // const randomColor: string | undefined = colors[randomInteger(0, colors.length - 1)];
-  // console.log(randomColor);
-
   return (
     <div className="col">
       <div className="card">
         <NavLink to={`/books/${props.isbn13}`}>
           <div style={{ width: '100%', height: '250px', marginBottom: '20px', backgroundColor: `#FEE9E2` }}>
-            <img src={props.image} className="card-img-top" alt="Books" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+            <img src={props.image} className="card-img-top" alt="Book" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
           </div>
         </NavLink>
         <div className="card-body">
