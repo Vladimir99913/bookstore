@@ -12,43 +12,53 @@ import { call, put, select } from 'redux-saga/effects';
 //     yield put(setLoading(false));
 //   } catch (error) {
 //     yield put(setError(error));
+//     yield put(setLoading(false));
 //   }
 // }
 
-export const fetchNewCards = createAsyncThunk<BookNew[]>('books/fetchNewCards', async (_, { rejectWithValue }) => {
+export const fetchNewCards = createAsyncThunk<BookNew[], undefined, { rejectValue: string }>('books/fetchNewCards', async (_, { rejectWithValue }) => {
   try {
     const data = await requestNewCards();
     if (!data) {
       throw new Error('Error');
     }
     return data;
-  } catch (error: any) {
-    return rejectWithValue(error.message);
+  } catch (error) {
+    if (error instanceof Error) {
+      return rejectWithValue(error.message);
+    }
+    return rejectWithValue('Something went wrong');
   }
 });
 
-export const fetchCards = createAsyncThunk<Book, string>('books/fetchCards', async (isbn13, { rejectWithValue }) => {
+export const fetchCards = createAsyncThunk<Book, string, { rejectValue: string }>('books/fetchCards', async (isbn13, { rejectWithValue }) => {
   try {
     const data = await requestCards(isbn13);
     if (!data) {
       throw new Error('Error');
     }
     return data;
-  } catch (error: any) {
-    return rejectWithValue(error.message);
+  } catch (error) {
+    if (error instanceof Error) {
+      return rejectWithValue(error.message);
+    }
+    return rejectWithValue('Something went wrong');
   }
 });
 
 type Object = { search: string; pageNumber: string };
-export const fetchSearchCards = createAsyncThunk<Data, Object>('books/fetchSearchCards', async ({ search, pageNumber = '1' }, { rejectWithValue }) => {
+export const fetchSearchCards = createAsyncThunk<Data, Object, { rejectValue: string }>('books/fetchSearchCards', async ({ search, pageNumber = '1' }, { rejectWithValue }) => {
   try {
     const data = await requestSearchCards({ search, pageNumber });
     if (!data) {
       throw new Error('Error');
     }
     return data;
-  } catch (error: any) {
-    return rejectWithValue(error.message);
+  } catch (error) {
+    if (error instanceof Error) {
+      return rejectWithValue(error.message);
+    }
+    return rejectWithValue('Something went wrong');
   }
 });
 
